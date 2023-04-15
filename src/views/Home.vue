@@ -1,14 +1,26 @@
 <template>
-  <div class>
-2333
+  <div>
+    <div id="map-wrap"></div>
   </div>
 </template>
+<!-- eslint-disable no-undef -->
+<script setup lang="ts">
+import { onMounted } from 'vue'
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component'
+onMounted(() => {
+  setTimeout(() => {
+    const map = new BMapGL.Map("map-wrap")
+    const point = new BMapGL.Point(116.404, 39.915)
 
-@Options({
-  components: {}
+    map.centerAndZoom(point, 15)
+  }, 1000)
 })
-export default class Map extends Vue {}
+
 </script>
+
+<style scoped>
+#map-wrap {
+  width: 100vw;
+  height: 100vh;
+}
+</style>

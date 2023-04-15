@@ -1,6 +1,14 @@
 <template>
-  <router-view/>
+  <RouterView />
 </template>
+<script setup lang="ts">
+import { RouterView } from 'vue-router'
 
-<style lang="less">
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
 </style>
