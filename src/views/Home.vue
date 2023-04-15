@@ -1,6 +1,6 @@
 <template>
   <div class>
-233
+2333
   </div>
 </template>
 
@@ -10,5 +10,5 @@ import { Options, Vue } from 'vue-class-component'
 @Options({
   components: {}
 })
-export default class HomeView extends Vue {}
+export default class Map extends Vue {}
 </script>
