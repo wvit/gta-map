@@ -5,17 +5,21 @@
 </template>
 <!-- eslint-disable no-undef -->
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { baiduMapStyle, baiduMapKey } from '@/config/baiduMap'
+import { Dom } from '@/utils/dom'
 
-onMounted(() => {
-  setTimeout(() => {
-    const map = new BMapGL.Map("map-wrap")
-    const point = new BMapGL.Point(116.404, 39.915)
-
-    map.centerAndZoom(point, 15)
-  }, 1000)
+const baiduMapScript = Dom.query('head').create('script', {
+  class: 'baidu-map-script',
+  src: `https://api.map.baidu.com/api?v=3.0&type=webgl&ak=${baiduMapKey}&callback=initialize`
 })
 
+baiduMapScript.onload = () => setTimeout(() => {
+  const map = new BMapGL.Map('map-wrap')
+  const point = new BMapGL.Point(116.404, 39.915)
+
+  map.centerAndZoom(point, 15)
+  map.setMapStyleV2({ styleJson: baiduMapStyle })
+}, 500)
 </script>
 
 <style scoped>

@@ -1,7 +1,3 @@
-/**
- * 传入一个时间戳，返回一个日期字符串
- */
-
 interface GetDateConfig {
   /** 时间戳 */
   time: number
@@ -9,6 +5,7 @@ interface GetDateConfig {
   full?: boolean
 }
 
+/** 传入一个时间戳，返回一个日期字符串 */
 export const getDate = ({ time, full }: GetDateConfig): string => {
   // 生成一个日期对象
   const date: any = new Date(time)
