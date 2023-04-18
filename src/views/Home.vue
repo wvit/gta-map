@@ -16,8 +16,11 @@ const baiduMapScript = Dom.query('head').create('script', {
 baiduMapScript.onload = () => setTimeout(() => {
   const map = new BMapGL.Map('map-wrap')
   const point = new BMapGL.Point(116.404, 39.915)
+  const zoomCtrl = new BMapGL.ZoomControl();
 
   map.centerAndZoom(point, 15)
+  map.enableScrollWheelZoom(true)
+  map.addControl(zoomCtrl)
   map.setMapStyleV2({ styleJson: baiduMapStyle })
 }, 500)
 </script>
