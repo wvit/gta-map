@@ -1,4 +1,8 @@
 /// <reference types="vite/client" />
 
-/** 百度地图全局变量 */
-declare const BMapGL: any
+interface Window {
+  /** 百度地图全局变量 */
+  BMapGL?: any
+  /** 地图实例 */
+  mapInstance?: any
+}
