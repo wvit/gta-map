@@ -1,12 +1,13 @@
-interface GetDateConfig {
+/** 传入一个时间戳，返回一个日期字符串 */
+export const getDate = ({
+  time,
+  full,
+}: {
   /** 时间戳 */
   time: number
   /** 是否补全：年-月-日 时:分:秒 */
   full?: boolean
-}
-
-/** 传入一个时间戳，返回一个日期字符串 */
-export const getDate = ({ time, full }: GetDateConfig): string => {
+}): string => {
   // 生成一个日期对象
   const date: any = new Date(time)
   // 数值如果小于10,则补0
@@ -15,12 +16,19 @@ export const getDate = ({ time, full }: GetDateConfig): string => {
   const month = Number(judge('getMonth')) + 1
   // 生成 年-月-日
   const transfromDate1 = `${judge('getFullYear')}-${month < 10 ? `0${month}` : month}-${judge(
-    'getDate',
+    'getDate'
   )}`
   // 生成 年-月-日 时:分:秒
   const transfromDate2 = `${transfromDate1} ${judge('getHours')}:${judge('getMinutes')}:${judge(
-    'getSeconds',
+    'getSeconds'
   )}`
 
   return full ? transfromDate2 : transfromDate1
+}
+
+/** 获取一个指定长度的数组 */
+export const getArr = length => {
+  return Array(length)
+    .fill(null)
+    .map((_, index) => index + 1)
 }
