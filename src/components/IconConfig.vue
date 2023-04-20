@@ -15,7 +15,7 @@
             v-for="item of getArr(430)"
             :key="item"
             :style="{
-              backgroundImage: `url(/src/assets/gtaIcons/icon${item}.png)`,
+              backgroundImage: `url(/src/assets/gtaIcons/${item}.png)`,
             }"
           ></div>
         </div>

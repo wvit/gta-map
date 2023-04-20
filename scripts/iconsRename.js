@@ -1,16 +1,17 @@
 const fs = require('fs')
 const { join } = require('path')
 
-const assetPath = join(__dirname, '../src/assets/test')
+/** 获取图标文件路径 */
+const getIconPath = (iconPath = '') => join(__dirname, '../src/assets/gtaIcons', iconPath)
 
-fs.readdirSync(assetPath).forEach((item, index) => {
+fs.readdirSync(getIconPath()).forEach((item, index) => {
   const newName = `${index + 1}.png`
-  const iconPath = join(assetPath, newName)
-  const findIcon = fs.existsSync(iconPath)
+  const iconPath = getIconPath(newName)
 
-  if (findIcon) {
-    fs.renameSync(iconPath, `${Math.random()}${index}`.slice(2))
+  /** 如果已经存在同名文件，就先重命名 */
+  if (item !== newName && fs.existsSync(iconPath)) {
+    fs.renameSync(iconPath, getIconPath(`${Math.random()}${index}.png`.slice(2)))
   }
 
-  fs.renameSync(join(assetPath, item), newName)
+  fs.renameSync(getIconPath(item), iconPath)
 })

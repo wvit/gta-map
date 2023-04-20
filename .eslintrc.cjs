@@ -21,6 +21,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'no-use-before-define': 'off',
     'vue/multi-word-component-names': 'off',
-    'no-unused-vars': 'warning'
+    // 'no-unused-vars': 'warning'
   }
 }
