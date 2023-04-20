@@ -1,17 +1,23 @@
 <template>
-  <a-drawer
+  <Drawer
     class="icon-config-drawer"
     title="图标配置"
     width="30vw"
     v-model:visible="visible"
     :mask="false"
   >
-    <a-input-search @search="searchPoi" />
-  </a-drawer>
+    <InputSearch @search="searchPoi" />
+    <Collapse :bordered="false">
+      <Collapse.Panel key="1" header="拖拽图标至地图"> 
+        <div class=""></div>
+      </Collapse.Panel>
+    </Collapse>
+  </Drawer>
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
+import { Drawer, InputSearch, Collapse } from 'ant-design-vue'
 
 const props = defineProps({
   /** 图标配置抽屉显隐 */
@@ -19,6 +25,8 @@ const props = defineProps({
     type: Boolean
   }
 })
+
+console.log(111111, Drawer)
 
 const visible = ref(props.visible)
 
