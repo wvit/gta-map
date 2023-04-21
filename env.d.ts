@@ -5,4 +5,6 @@ interface Window {
   BMapGL?: any
   /** 地图实例 */
   mapInstance?: any
+  /** 其他额外参数 */
+  [key: string]: any
 }

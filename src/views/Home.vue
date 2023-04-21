@@ -13,7 +13,7 @@ import { Dom } from '@/utils/dom'
 import { initPosition } from '@/utils/initPosition'
 
 /** 图标配置抽屉显隐 */
-const iconConfigVisible = ref(true)
+const iconConfigVisible = ref(false)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
@@ -30,9 +30,18 @@ const initMap = () => {
 
   baiduMapScript.onload = () => {
     setTimeout(() => {
-      const { BMapGL } = window
+      const { BMapGL, BMAP_ANCHOR_BOTTOM_RIGHT } = window
       const mapInstance = new BMapGL.Map('map-wrap')
+      const scaleCtrl = new BMapGL.ScaleControl({
+        anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+        offset: { width: 20, height: 20 },
+      })
+      const zoomCtrl = new BMapGL.ZoomControl({
+        offset: { width: 20, height: 60 },
+      })
 
+      mapInstance.addControl(scaleCtrl)
+      mapInstance.addControl(zoomCtrl)
       mapInstance.enableScrollWheelZoom(true)
       mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
 
