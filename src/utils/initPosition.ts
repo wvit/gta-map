@@ -6,13 +6,61 @@ export const initPosition = () => {
   const geolocation = new BMapGL.Geolocation()
   const currentCity = new BMapGL.LocalCity()
 
-  currentCity.get(result => mapInstance.centerAndZoom(result.center, 13))
+  currentCity.get(result => {
+    const { center } = result
+    mapInstance.centerAndZoom(center, 13)
+  })
   geolocation.enableSDKLocation()
   geolocation.getCurrentPosition(e => {
-    if (!e?.point) return
-    mapInstance.panTo(e.point)
+    const { point } = e || {}
+    if (!point) return
+    mapInstance.panTo(point)
+    createPositionFrontSight(point)
   })
 }
 
 /** 创建一个定位准星图标 */
-const createPositionSight = () => {}
+const createPositionFrontSight = point => {
+  const { BMapGL, mapInstance } = window
+  const customOverlay = new BMapGL.CustomOverlay(
+    () => {
+      const width = 3
+      const commomStyle = {
+        width: `${width}px`,
+        height: '100px',
+        backgroundImage:
+          'linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))',
+        transformOrigin: 'bottom center',
+      }
+      const frontSight = Dom.create('div').setStyle({ display: 'flex' })
+      const frontSightTop = Dom.create('span').setStyle({
+        ...commomStyle,
+        transform: 'translate(0, -10px)',
+      })
+      const frontSightRight = Dom.create('span').setStyle({
+        ...commomStyle,
+        transform: `translate(${10 - 1 * width}px) rotate(90deg)`,
+      })
+      const frontSightBottom = Dom.create('span').setStyle({
+        ...commomStyle,
+        transform: `translate(${-2 * width}px, 10px) rotate(180deg)`,
+      })
+      const frontSightLeft = Dom.create('span').setStyle({
+        ...commomStyle,
+        transform: `translate(${-10 - 3 * width}px) rotate(270deg)`,
+      })
+
+      return frontSight
+        .add(frontSightTop)
+        .add(frontSightRight)
+        .add(frontSightBottom)
+        .add(frontSightLeft)
+    },
+    {
+      point,
+      map: mapInstance,
+    }
+  )
+
+  mapInstance.addOverlay(customOverlay)
+}

@@ -38,7 +38,7 @@ const initMap = () => {
 
       window.mapInstance = mapInstance
       baiduMapInitStatus.value = true
-      
+
       initPosition()
     }, 500)
   }
@@ -47,7 +47,7 @@ const initMap = () => {
 initMap()
 </script>
 
-<style scoped>
+<style scoped lang="less">
 #map-wrap {
   width: 100vw;
   height: 100vh;
