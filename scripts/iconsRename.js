@@ -4,7 +4,11 @@ const { join } = require('path')
 /** 获取图标文件路径 */
 const getIconPath = (iconPath = '') => join(__dirname, '../src/assets/gtaIcons', iconPath)
 
-fs.readdirSync(getIconPath()).forEach((item, index) => {
+const icons = fs.readdirSync(getIconPath()).sort((a, b) => {
+  return a.split('.')[0] - b.split('.')[0]
+})
+
+icons.forEach((item, index) => {
   const newName = `${index + 1}.png`
   const iconPath = getIconPath(newName)
 
@@ -15,3 +19,4 @@ fs.readdirSync(getIconPath()).forEach((item, index) => {
 
   fs.renameSync(getIconPath(item), iconPath)
 })
+
