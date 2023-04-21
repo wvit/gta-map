@@ -1,7 +1,7 @@
 <template>
   <div class="home-wrap">
-    <div id="map-wrap"></div>
-    <IconConfig v-model:visible="iconConfigVisible" />
+    <div id="map-wrap" @dragover="iconDragOver"></div>
+    <IconConfig v-if="baiduMapInitStatus" :visible="iconConfigVisible" />
   </div>
 </template>
 
@@ -10,25 +10,38 @@ import { ref } from 'vue'
 import IconConfig from '@/components/IconConfig.vue'
 import { baiduMapStyle, baiduMapKey } from '@/config/baiduMap'
 import { Dom } from '@/utils/dom'
+import { initPosition } from '@/utils/initPosition'
 
+/** 图标配置抽屉显隐 */
 const iconConfigVisible = ref(true)
+
+/** 百度地图初始化状态 */
+const baiduMapInitStatus = ref(false)
+
+/** 图标拖拽结束 */
+const iconDragOver = e => e.preventDefault()
 
 /** 初始化地图配置 */
 const initMap = () => {
   const baiduMapScript = Dom.query('head').create('script', {
     class: 'baidu-map-script',
-    src: `https://api.map.baidu.com/api?v=3.0&type=webgl&ak=${baiduMapKey}&callback=initialize`
+    src: `https://api.map.baidu.com/api?v=3.0&type=webgl&ak=${baiduMapKey}&callback=initialize`,
   })
 
-  baiduMapScript.onload = () =>
+  baiduMapScript.onload = () => {
     setTimeout(() => {
-      const point = new window.BMapGL.Point(116.404, 39.915)
-      window.mapInstance = new window.BMapGL.Map('map-wrap')
+      const { BMapGL } = window
+      const mapInstance = new BMapGL.Map('map-wrap')
 
-      window.mapInstance.centerAndZoom(point, 13)
-      window.mapInstance.enableScrollWheelZoom(true)
-      window.mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
+      mapInstance.enableScrollWheelZoom(true)
+      mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
+
+      window.mapInstance = mapInstance
+      baiduMapInitStatus.value = true
+      
+      initPosition()
     }, 500)
+  }
 }
 
 initMap()

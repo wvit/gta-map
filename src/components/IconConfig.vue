@@ -10,14 +10,14 @@
     <Collapse class="configs-wrap" :defaultActiveKey="1" :bordered="false">
       <Collapse.Panel key="1" header="拖拽图标至地图">
         <div class="icon-list">
-          <div
+          <img
+            v-for="item of getArr(918)"
+            draggable
             class="icon-item"
-            v-for="item of getArr(430)"
             :key="item"
-            :style="{
-              backgroundImage: `url(/src/assets/gtaIcons/${item}.png)`,
-            }"
-          ></div>
+            :src="`/src/assets/gtaIcons/${item}.png`"
+            @dragend="iconDragEnd"
+          />
         </div>
       </Collapse.Panel>
     </Collapse>
@@ -28,6 +28,9 @@
 import { ref } from 'vue'
 import { Drawer, InputSearch, Collapse } from 'ant-design-vue'
 import { getArr } from '@/utils/tools'
+import { Dom } from '@/utils/dom'
+
+const { BMapGL, mapInstance } = window
 
 const props = defineProps({
   /** 图标配置抽屉显隐 */
@@ -36,14 +39,8 @@ const props = defineProps({
   },
 })
 
+/** 抽屉显隐，重新声明便于双向绑定 */
 const visible = ref(props.visible)
-
-const iconSheetList = ref([
-  {
-    xNum: getArr(16),
-    yNum: getArr(27),
-  },
-])
 
 /** 搜索兴趣点列表 */
 const searchPoi = searchValue => {
@@ -53,8 +50,30 @@ const searchPoi = searchValue => {
     },
     pageCapacity: 100,
   }
-  const local = new window.BMapGL.LocalSearch(window.mapInstance, options)
+  const local = new BMapGL.LocalSearch(mapInstance, options)
+
   local.search(searchValue.split('，'))
+}
+
+/** icon拖拽结束 */
+const iconDragEnd = e => {
+  const { x, y, target } = e
+  const point = mapInstance.pixelToPoint({ x: x - 16, y: y - 16 })
+
+  const customOverlay = new BMapGL.CustomOverlay(
+    () => {
+      return Dom.create('img', {
+        src: target.src,
+        draggable: false,
+      }).setStyle({ width: '32px', height: '32px' })
+    },
+    {
+      point,
+      map: mapInstance,
+    }
+  )
+
+  mapInstance.addOverlay(customOverlay)
 }
 </script>
 
@@ -71,6 +90,7 @@ const searchPoi = searchValue => {
 .icon-list {
   display: flex;
   flex-wrap: wrap;
+  user-select: none;
 
   .icon-item {
     margin: 4px;
