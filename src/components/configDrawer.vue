@@ -9,14 +9,14 @@
     <Tabs :defaultActiveKey="1">
       <Tabs.TabPane key="1" tab="全部图标">
         <div class="icon-list">
-          <Popover v-for="item of getArr(918)" :key="item" placement="right" trigger="click">
+          <Popover v-for="item of iconsConfig.list" :key="item" placement="right" trigger="click">
             <template #content>
               <div class="icon-operation">
                 <span>收藏</span>
               </div>
             </template>
             <div class="icon-item">
-              <img draggable :src="`/src/assets/gtaIcons/${item}.png`" @dragend="iconDragEnd" />
+              <img draggable :src="`/src/assets/gtaIcons/${item}`" @dragend="iconDragEnd" />
             </div>
           </Popover>
         </div>
@@ -32,8 +32,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Drawer, InputSearch, Tabs, Popover } from 'ant-design-vue'
-import { getArr } from '@/utils/tools'
 import { Dom } from '@/utils/dom'
+import iconsConfig from '@/config/icons.json'
 
 const { BMapGL, mapInstance } = window
 
