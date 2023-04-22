@@ -9,31 +9,20 @@
     <Tabs :defaultActiveKey="1">
       <Tabs.TabPane key="1" tab="全部图标">
         <div class="icon-list">
-          <!-- <Popover v-for="item of getArr(918)" :key="item" placement="right" trigger="click">
+          <Popover v-for="item of getArr(918)" :key="item" placement="right" trigger="click">
             <template #content>
-              <p>Content</p>
-              <p>Content</p>
+              <div class="icon-operation">
+                <span>收藏</span>
+              </div>
             </template>
             <div class="icon-item">
               <img draggable :src="`/src/assets/gtaIcons/${item}.png`" @dragend="iconDragEnd" />
             </div>
-          </Popover> -->
-
-          <div v-for="item of getArr(918)" :key="item" class="icon-item">
-            <img draggable :src="`/src/assets/gtaIcons/${item}.png`" @dragend="iconDragEnd" />
-          </div>
-
-          <!-- <img
-            v-for="item of getArr(918)"
-            :key="item"
-            class="icon-item"
-            draggable
-            :src="`/src/assets/gtaIcons/${item}.png`"
-            @dragend="iconDragEnd"
-          /> -->
+          </Popover>
         </div>
       </Tabs.TabPane>
-      <Tabs.TabPane key="2" tab="搜索">
+      <Tabs.TabPane key="2" tab="我的图标"> </Tabs.TabPane>
+      <Tabs.TabPane key="3" tab="搜索">
         <InputSearch :style="{ margin: '24px', width: '200px' }" @search="searchPoi" />
       </Tabs.TabPane>
     </Tabs>
@@ -96,6 +85,12 @@ const iconDragEnd = e => {
 </script>
 
 <style scoped lang="less">
+.icon-operation {
+  span {
+    cursor: pointer;
+  }
+}
+
 .icon-list {
   display: flex;
   flex-wrap: wrap;
@@ -103,6 +98,10 @@ const iconDragEnd = e => {
   height: 100%;
   overflow-y: auto;
   padding: 0 18px 24px 18px;
+
+  .ant-popover-open {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  }
 
   .icon-item {
     margin: 4px;

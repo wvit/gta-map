@@ -3,10 +3,9 @@
 </template>
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-
 </script>
 
-<style>
+<style lang="less">
 * {
   margin: 0;
   padding: 0;
