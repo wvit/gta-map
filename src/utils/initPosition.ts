@@ -8,7 +8,8 @@ export const initPosition = () => {
 
   currentCity.get(result => {
     const { center } = result
-    mapInstance.centerAndZoom(center, 13)
+    mapInstance.panTo(center)
+    createPositionFrontSight(center)
   })
   geolocation.enableSDKLocation()
   geolocation.getCurrentPosition(e => {
@@ -59,8 +60,15 @@ const createPositionFrontSight = point => {
     {
       point,
       map: mapInstance,
+      properties: { key: 'front-sight' },
     }
   )
 
+  /** 移除已经添加的准星覆盖物 */
+  mapInstance.getOverlays().forEach(item => {
+    if (item?.properties?.key === 'front-sight') item.remove()
+  })
+
+  /** 将新的准星覆盖物添加进地图 */
   mapInstance.addOverlay(customOverlay)
 }

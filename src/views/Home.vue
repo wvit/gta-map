@@ -1,19 +1,19 @@
 <template>
   <div class="home-wrap">
     <div id="map-wrap" @dragover="iconDragOver"></div>
-    <IconConfig v-if="baiduMapInitStatus" :visible="iconConfigVisible" />
+    <configDrawer v-if="baiduMapInitStatus" :visible="configVisible" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import IconConfig from '@/components/IconConfig.vue'
+import configDrawer from '@/components/configDrawer.vue'
 import { baiduMapStyle, baiduMapKey } from '@/config/baiduMap'
 import { Dom } from '@/utils/dom'
 import { initPosition } from '@/utils/initPosition'
 
-/** 图标配置抽屉显隐 */
-const iconConfigVisible = ref(false)
+/** 配置抽屉显隐 */
+const configVisible = ref(true)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
@@ -40,6 +40,7 @@ const initMap = () => {
         offset: { width: 20, height: 60 },
       })
 
+      mapInstance.centerAndZoom(new window.BMapGL.Point(116.404, 39.915), 13)
       mapInstance.addControl(scaleCtrl)
       mapInstance.addControl(zoomCtrl)
       mapInstance.enableScrollWheelZoom(true)
