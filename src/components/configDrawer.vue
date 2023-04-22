@@ -89,6 +89,8 @@ const iconDragEnd = e => {
   )
 
   mapInstance.addOverlay(customOverlay)
+
+  /** 地图缩放拖动后，添加的图标覆盖物会发生一个偏移，重新绘制刷新一下 */
   customOverlay.draw()
 }
 </script>
