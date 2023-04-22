@@ -10,6 +10,7 @@ const getIconPath = (iconPath = '') => join(__dirname, '../src/assets/gtaIcons',
 const iconsRename = () => {
   const icons = []
   const unnameIcons = []
+
   fs.readdirSync(getIconPath()).forEach(item => {
     if (item.indexOf('sort=') === 0) {
       icons.push(item)
@@ -17,7 +18,9 @@ const iconsRename = () => {
       unnameIcons.push(item)
     }
   })
-  const startIndex = icons.length + 1
+
+  /** 获取最后一个图标的sort排序索引 */
+  const startIndex = Number(parse(icons[icons.length - 1])?.sort || 0) + 1
 
   /** 将还没有生成名称的图标文件，按规则新生成名称 */
   unnameIcons.forEach((item, index) => {
