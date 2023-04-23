@@ -32,8 +32,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Drawer, InputSearch, Tabs, Popover } from 'ant-design-vue'
+import { storeHandles } from '@/IDB'
 import { Dom } from '@/utils/dom'
 import iconsConfig from '@/config/icons.json'
+
+console.log(11111,  storeHandles.myIcons.add({ id: '111111' }))
 
 const { BMapGL, mapInstance } = window
 
