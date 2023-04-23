@@ -81,20 +81,19 @@ export class Db {
 
   /** 创建数据表 */
   createObjectStore = async storeData => {
-    await this.handleObjectStore(() => {
-      this.createStoreData = storeData
-    }, storeData)
+    const status = await this.handleObjectStore(storeData)
+    console.log(1111, status)
+    if (status) this.createStoreData = storeData
   }
 
   /** 删除数据表 */
   deleteObjectStore = async storeData => {
-    await this.handleObjectStore(() => {
-      this.deleteStoreData = storeData
-    }, storeData)
+    const status = await this.handleObjectStore(storeData)
+    if (status) this.deleteStoreData = storeData
   }
 
   /** 操作数据库公共逻辑 */
-  handleObjectStore = async (callback, storeData) => {
+  handleObjectStore = async storeData => {
     return new Promise(resolve => {
       if (!this.dbRequest) return resolve(false)
       const { name } = this.config
@@ -105,11 +104,11 @@ export class Db {
       /** 判断数据表是否存在 */
       if (!objectStoreNames.contains(storeName)) return resolve(false)
 
-      callback()
       this.dataBase.close()
       this.dbRequest = indexedDB.open(name, version + 1)
       this.dbRequest.onsuccess = onsuccess
       this.dbRequest.onupgradeneeded = onupgradeneeded
+      resolve(true)
     })
   }
 }
