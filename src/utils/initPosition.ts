@@ -20,7 +20,7 @@ export const initPosition = () => {
   })
 }
 
-/** 创建一个定位准星图标 */
+/** 创建一个定位准星图标至地图 */
 const createPositionFrontSight = point => {
   const { BMapGL, mapInstance } = window
   const customOverlay = new BMapGL.CustomOverlay(
