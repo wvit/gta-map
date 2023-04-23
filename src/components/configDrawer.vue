@@ -36,8 +36,6 @@ import { storeHandles } from '@/IDB'
 import { Dom } from '@/utils/dom'
 import iconsConfig from '@/config/icons.json'
 
-storeHandles.myIcons.add({ id: '111111' })
-
 const { BMapGL, mapInstance } = window
 
 const props = defineProps({

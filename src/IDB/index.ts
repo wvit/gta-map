@@ -22,7 +22,7 @@ export class Db {
   /** 当前需要创建的数据表 */
   createStoreData: null | CreateStoreData = null
 
-  /** 需要删除的数据表名称 */
+  /** 当前需要删除的数据表 */
   deleteStoreData: null | DeleteStoreData = null
 
   /** 初始化IDBOpenDBRequest */
@@ -48,7 +48,7 @@ export class Db {
           objectStore.createIndex(indexName, fieldName, params)
         })
 
-        /** 创建完成后，清空当前创建数据表配置 */
+        /** 创建完成后，清空当前需要创建的数据表配置 */
         this.createStoreData = null
       }
 
@@ -57,7 +57,7 @@ export class Db {
         const { storeName } = this.deleteStoreData
         result.deleteObjectStore(storeName)
 
-        /** 删除完成后，清空当前删除数据表配置 */
+        /** 删除完成后，清空需要删除的数据表配置 */
         this.deleteStoreData = null
       }
     }
@@ -81,34 +81,46 @@ export class Db {
 
   /** 创建数据表 */
   createObjectStore = async storeData => {
-    const status = await this.handleObjectStore(storeData)
-    console.log(1111, status)
-    if (status) this.createStoreData = storeData
+    return this.handleObjectStore(result => {
+      if (result.objectStoreNames.contains(storeData.storeName)) {
+        return false
+      }
+      this.createStoreData = storeData
+      return true
+    })
   }
 
   /** 删除数据表 */
   deleteObjectStore = async storeData => {
-    const status = await this.handleObjectStore(storeData)
-    if (status) this.deleteStoreData = storeData
+    return this.handleObjectStore(result => {
+      if (!result.objectStoreNames.contains(storeData.storeName)) {
+        return false
+      }
+      this.deleteStoreData = storeData
+      return true
+    })
   }
 
   /** 操作数据库公共逻辑 */
-  handleObjectStore = async storeData => {
-    return new Promise(resolve => {
-      if (!this.dbRequest) return resolve(false)
-      const { name } = this.config
-      const { result, onsuccess, onupgradeneeded } = this.dbRequest
-      const { objectStoreNames, version } = result
-      const { storeName } = storeData
+  handleObjectStore = async callback => {
+    return new Promise<void>(resolve => {
+      if (this.dbRequest) {
+        const { result, onsuccess, onupgradeneeded } = this.dbRequest
+        const { name } = this.config
+        const { version } = result
 
-      /** 判断数据表是否存在 */
-      if (!objectStoreNames.contains(storeName)) return resolve(false)
+        if (callback(result)) {
+          /** 升级前需要先关闭数据库连接 */
+          this.dataBase.close()
+          /** 重新打开并升级数据库版本，使其触发数据库 onupgradeneeded 事件 */
+          this.dbRequest = indexedDB.open(name, version + 1)
+          /** 在新返回的数据库连接实例上，绑定最初添加的事件 */
+          this.dbRequest.onsuccess = onsuccess
+          this.dbRequest.onupgradeneeded = onupgradeneeded
+        }
+      }
 
-      this.dataBase.close()
-      this.dbRequest = indexedDB.open(name, version + 1)
-      this.dbRequest.onsuccess = onsuccess
-      this.dbRequest.onupgradeneeded = onupgradeneeded
-      resolve(true)
+      resolve()
     })
   }
 }
