@@ -1,13 +1,13 @@
 <template>
   <div class="home-wrap">
     <div id="map-wrap" @dragover="iconDragOver"></div>
-    <configDrawer v-if="baiduMapInitStatus" :visible="configVisible" />
+    <ConfigDrawer v-if="baiduMapInitStatus" :visible="configVisible" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import configDrawer from '@/components/configDrawer.vue'
+import ConfigDrawer from '@/components/ConfigDrawer/index.vue'
 import { baiduMapStyle, baiduMapKey } from '@/config/baiduMap'
 import { Dom } from '@/utils/dom'
 import { initPosition } from '@/utils/initPosition'
