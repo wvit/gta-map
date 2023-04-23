@@ -6,5 +6,4 @@ import 'ant-design-vue/dist/antd.css'
 
 const app = createApp(App)
 
-app.use(createPinia()).use(router)
-app.mount('#app')
+app.use(createPinia()).use(router).mount('#app')
