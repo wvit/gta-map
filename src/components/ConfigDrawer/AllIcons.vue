@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { Popover } from 'ant-design-vue'
+import { parse } from 'qs'
 import { storeHandles } from '@/IDB'
 import { Dom } from '@/utils/dom'
 import iconsConfig from '@/config/icons.json'
@@ -45,8 +46,9 @@ const iconDragEnd = e => {
 }
 
 /** 收藏icon图标 */
-const collectIcon = async iconName => {
-  const status = await storeHandles.myIcons.add({ id: iconName, type: 'image' })
+const collectIcon = async iconData => {
+  const { id } = parse(iconData)
+  const status = await storeHandles.myIcons.add({ id, iconData, type: 'image' })
   console.log(11111, status)
 }
 </script>
