@@ -1,7 +1,54 @@
+import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
+import { storeHandles } from '@/IDB'
 import { Dom } from './dom'
 
+/** 初始化地图配置 */
+export const initMap = async () => {
+  const baiduMapScript = Dom.query('head').create('script', {
+    class: 'baidu-map-script',
+    src: `https://api.map.baidu.com/api?v=3.0&type=webgl&ak=${baiduMapKey}&callback=initialize`,
+  })
+
+  return new Promise<void>(resolve => {
+    baiduMapScript.onload = () => {
+      setTimeout(() => {
+        const { BMapGL, BMAP_ANCHOR_BOTTOM_RIGHT } = window
+        const mapInstance = new BMapGL.Map('map-wrap')
+        const scaleCtrl = new BMapGL.ScaleControl({
+          anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+          offset: { width: 20, height: 20 },
+        })
+        const zoomCtrl = new BMapGL.ZoomControl({
+          offset: { width: 20, height: 60 },
+        })
+
+        window.mapInstance = mapInstance
+        mapInstance.centerAndZoom(new window.BMapGL.Point(116.404, 39.915), 13)
+        mapInstance.addControl(scaleCtrl)
+        mapInstance.addControl(zoomCtrl)
+        mapInstance.enableScrollWheelZoom(true)
+        mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
+        initPosition()
+        initMarkerIcons()
+
+        resolve()
+      }, 500)
+    }
+  })
+}
+
+/** 初始化时从数据库中获取地图标注图标数据，并添加到地图中 */
+const initMarkerIcons = async () => {
+  const { list } = await storeHandles.markerIcons.getAll()
+
+  list.forEach(item => {
+    const { id, iconId, lat, lng } = item
+  })
+  console.log(11111, list)
+}
+
 /** 定位当前坐标位置 */
-export const initPosition = () => {
+const initPosition = () => {
   const { BMapGL, mapInstance } = window
   const geolocation = new BMapGL.Geolocation()
   const currentCity = new BMapGL.LocalCity()
@@ -60,13 +107,13 @@ const createPositionFrontSight = point => {
     {
       point,
       map: mapInstance,
-      properties: { key: 'front-sight' },
+      properties: { type: 'front-sight' },
     }
   )
 
   /** 移除已经添加的准星覆盖物 */
   mapInstance.getOverlays().forEach(item => {
-    if (item?.properties?.key === 'front-sight') item.remove()
+    if (item?.properties?.type === 'front-sight') item.remove()
   })
 
   /** 将新的准星覆盖物添加进地图 */

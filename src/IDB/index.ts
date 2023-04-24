@@ -74,6 +74,11 @@ export class Db {
         options: { keyPath: 'id' },
       })
 
+      await this.createObjectStore({
+        storeName: 'markerIcons',
+        options: { keyPath: 'id' },
+      })
+
       /** 设置一个状态，告诉其他地方，数据库已准备就绪 */
       this.dbReady = true
     }

@@ -21,8 +21,16 @@ export namespace StoreHandles {
 
   /** 数据库暴露出去的操作方法 */
   export interface Handles {
-    /** 我的图标数据库 */
+    /** 我的图标数据表 */
     myIcons: {
+      add: Add
+      getPage: GetPage
+      getAll: GetAll
+      delete: Delete
+    }
+
+    /** 地图标注图标数据表 */
+    markerIcons: {
       add: Add
       getPage: GetPage
       getAll: GetAll

@@ -25,6 +25,12 @@ export class StoreHandle {
         getPage: query => this.getPageData('myIcons', { query }),
         getAll: () => this.getStoreAllData('myIcons'),
       },
+      markerIcons: {
+        add: data => this.createData('markerIcons', data),
+        delete: id => this.deleteData('markerIcons', id),
+        getPage: query => this.getPageData('markerIcons', { query }),
+        getAll: () => this.getStoreAllData('markerIcons'),
+      },
     }
   }
 

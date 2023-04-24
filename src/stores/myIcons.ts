@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { message } from 'ant-design-vue'
 import { storeHandles } from '@/IDB'
 
-/** “我的图标”数据store */
+/** <我的图标>全局数据store */
 export const useMyIconsStore = defineStore('myIcons', () => {
   const icons = ref<any[]>([])
 
