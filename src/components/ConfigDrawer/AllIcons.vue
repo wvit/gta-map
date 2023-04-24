@@ -1,13 +1,20 @@
 <template>
   <div class="icon-list">
-    <Popover v-for="item of iconsConfig.list" :key="item" placement="right" trigger="click">
+    <Popover
+      v-for="(item, index) of iconsConfig.list"
+      :key="index"
+      placement="right"
+      trigger="click"
+    >
       <template #content>
         <div class="icon-operation">
-          <span @click="collectIcon(item)">收藏</span>
+          <span @click="myIconsStore[findMyIcon(item) ? 'removeIcon' : 'addIcon'](item)">
+            {{ findMyIcon(item) ? '从“我的图标”中移除' : '添加至“我的图标”' }}
+          </span>
         </div>
       </template>
       <div class="icon-item">
-        <img draggable :src="`/src/assets/gtaIcons/${item}.png`" @dragend="iconDragEnd" />
+        <img draggable :src="`/src/assets/gtaIcons/${item.iconName}.png`" @dragend="iconDragEnd" />
       </div>
     </Popover>
   </div>
@@ -15,12 +22,12 @@
 
 <script setup lang="ts">
 import { Popover } from 'ant-design-vue'
-import { parse } from 'qs'
-import { storeHandles } from '@/IDB'
+import { useMyIconsStore } from '@/stores/myIcons'
 import { Dom } from '@/utils/dom'
 import iconsConfig from '@/config/icons.json'
 
 const { BMapGL, mapInstance } = window
+const myIconsStore = useMyIconsStore()
 
 /** 拖拽结束，将icon添加至地图 */
 const iconDragEnd = e => {
@@ -45,46 +52,10 @@ const iconDragEnd = e => {
   customOverlay.draw()
 }
 
-/** 收藏icon图标 */
-const collectIcon = async iconData => {
-  const { id } = parse(iconData)
-  const status = await storeHandles.myIcons.add({ id, iconData, type: 'image' })
-  console.log(11111, status)
+/** 查找icon,是否在“我的图标”中已存在 */
+const findMyIcon = iconData => {
+  return !!myIconsStore.icons.find(item => item.id === iconData.id)
 }
 </script>
 
-<style scoped lang="less">
-.icon-operation {
-  span {
-    cursor: pointer;
-  }
-}
-
-.icon-list {
-  display: flex;
-  flex-wrap: wrap;
-  user-select: none;
-  height: 100%;
-  overflow-y: auto;
-  padding: 0 18px 24px 18px;
-
-  .ant-popover-open {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  }
-
-  .icon-item {
-    margin: 4px;
-    padding: 4px;
-    cursor: pointer;
-
-    &:hover {
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-    }
-
-    img {
-      width: 32px;
-      height: 32px;
-    }
-  }
-}
-</style>
+<style scoped lang="less"></style>

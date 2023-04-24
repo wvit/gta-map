@@ -21,10 +21,33 @@ export class StoreHandle {
     return {
       myIcons: {
         add: data => this.createData('myIcons', data),
-        get: query => this.getPageData('myIcons', { query }),
+        delete: id => this.deleteData('myIcons', id),
+        getPage: query => this.getPageData('myIcons', { query }),
         getAll: () => this.getStoreAllData('myIcons'),
       },
     }
+  }
+
+  /** 向数据表新增数据 */
+  async createData(storeName, data) {
+    const store = await this.getObjectStore(storeName)
+    const addData = Array.isArray(data) ? data.pop() : data
+    const request = store.add(this.getCreateData(addData))
+
+    return new Promise<boolean>((resolve, reject) => {
+      request.onsuccess = () => {
+        if (data.length) this.createData(storeName, data)
+        resolve(true)
+      }
+      request.onerror = reject
+    })
+  }
+
+  /** 删除数据表中的数据 */
+  async deleteData(storeName, id) {
+    const store: IDBObjectStore = await this.getObjectStore(storeName)
+    await store.delete(id)
+    return true
   }
 
   /** 获取所有数据 */
@@ -88,21 +111,6 @@ export class StoreHandle {
   getCreateData(data) {
     const id = Date.now()
     return { id: id.toString(), createDate: getDate({ time: id, full: true }), ...data }
-  }
-
-  /** 向数据表新增数据 */
-  async createData(storeName, data) {
-    const store = await this.getObjectStore(storeName)
-    const addData = Array.isArray(data) ? data.pop() : data
-    const request = store.add(this.getCreateData(addData))
-
-    return new Promise<boolean>((resolve, reject) => {
-      request.onsuccess = () => {
-        if (data.length) this.createData(storeName, data)
-        resolve(true)
-      }
-      request.onerror = reject
-    })
   }
 
   /** 检查数据表是否准备完毕 */

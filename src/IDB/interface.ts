@@ -16,13 +16,17 @@ export namespace StoreHandles {
   /** 获取查询条件的所有数据 */
   type GetAll<T = Query> = (query?: T) => Promise<StoreAllValue>
 
+  /** 批量删除数据 */
+  type Delete = (id: string) => Promise<boolean>
+
   /** 数据库暴露出去的操作方法 */
   export interface Handles {
     /** 我的图标数据库 */
     myIcons: {
       add: Add
-      get: GetPage
+      getPage: GetPage
       getAll: GetAll
+      delete: Delete
     }
   }
 }

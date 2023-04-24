@@ -30,7 +30,7 @@ const iconsRename = () => {
       id: uuidv4().split('-').join(''),
     })
 
-    fs.renameSync(getIconPath(item), getIconPath(iconName))
+    fs.renameSync(getIconPath(item), getIconPath(`${iconName}.png`))
     icons.push(iconName)
   })
 
@@ -40,7 +40,17 @@ const iconsRename = () => {
 
   fs.writeFileSync(
     join(__dirname, '../src/config/icons.json'),
-    JSON.stringify({ length: icons.length, list: icons }, null, 2)
+    JSON.stringify(
+      {
+        length: icons.length,
+        list: icons.map(item => {
+          const { id } = parse(item)
+          return { id, iconName: item, type: 'image' }
+        }),
+      },
+      null,
+      2
+    )
   )
 }
 
