@@ -10,4 +10,8 @@ import { RouterView } from 'vue-router'
   margin: 0;
   padding: 0;
 }
+
+.ant-popover-inner-content {
+  padding: 12px !important;
+}
 </style>
