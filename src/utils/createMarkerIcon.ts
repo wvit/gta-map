@@ -8,9 +8,11 @@ export const createMarkerIcon = (options: {
   point: { lng: number; lat: number }
   /** 图标数据 */
   iconData: any
+  /** 是否保存至数据库 */
+  save?: boolean
 }) => {
   const { mapInstance, BMapGL } = window
-  const { point, iconData } = options
+  const { point, iconData, save } = options
   const { lng, lat } = point
   const id = [iconData.id, lng, lat].join('-')
   const iconSrc = getIconSrc(iconData)
@@ -27,6 +29,16 @@ export const createMarkerIcon = (options: {
     properties: { id },
   })
 
+  if (save) {
+    /** 将地图标注图标保存至数据库 */
+    storeHandles.markerIcons.add({
+      id,
+      lng,
+      lat,
+      iconData: JSON.parse(JSON.stringify(iconData)),
+    })
+  }
+
   markerIcon.addEventListener('dblclick', e => {
     const findIcon = mapInstance.getOverlays().find(item => item.properties.id === id)
     e.stopPropagation()
@@ -39,11 +51,4 @@ export const createMarkerIcon = (options: {
   mapInstance.addOverlay(customOverlay)
   /** 地图缩放拖动后，添加的图标覆盖物会发生一个偏移，需要重新绘制刷新一下 */
   customOverlay.draw()
-  /** 将地图标注图标保存至数据库 */
-  storeHandles.markerIcons.add({
-    id,
-    lng,
-    lat,
-    iconData: JSON.parse(JSON.stringify(iconData)),
-  })
 }

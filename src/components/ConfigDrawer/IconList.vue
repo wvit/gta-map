@@ -39,7 +39,7 @@ const iconDragEnd = (e, iconData) => {
   const { x, y } = e
   const point = mapInstance.pixelToPoint({ x, y: y - 8 })
 
-  createMarkerIcon({ point, iconData })
+  createMarkerIcon({ point, iconData, save: true })
 }
 
 /** 查找icon,是否在“我的图标”中已存在 */
