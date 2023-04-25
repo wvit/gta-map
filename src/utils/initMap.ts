@@ -1,6 +1,7 @@
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
 import { storeHandles } from '@/IDB'
 import { Dom } from './dom'
+import { createMarkerIcon } from './createMarkerIcon'
 
 /** 初始化地图配置 */
 export const initMap = async () => {
@@ -41,10 +42,10 @@ export const initMap = async () => {
 const initMarkerIcons = async () => {
   const { list } = await storeHandles.markerIcons.getAll()
 
-  list.forEach(item => {
-    const { id, iconId, lat, lng } = item
+  list.forEach(async item => {
+    const { iconData, lng, lat } = item
+    createMarkerIcon({ iconData, point: { lng, lat } })
   })
-  console.log(11111, list)
 }
 
 /** 定位当前坐标位置 */
