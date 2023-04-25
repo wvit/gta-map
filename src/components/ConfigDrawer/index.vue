@@ -3,8 +3,9 @@
     class="config-drawer"
     title="地图配置"
     width="612px"
-    v-model:visible="visible"
+    :visible="props.visible"
     :mask="false"
+    @close="$emit('update:visible', false)"
   >
     <Tabs defaultActiveKey="2">
       <Tabs.TabPane key="1" tab="全部图标">
@@ -21,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { Drawer, InputSearch, Tabs } from 'ant-design-vue'
 import { useMyIconsStore } from '@/stores/myIcons'
 import iconsConfig from '@/config/icons.json'
@@ -36,9 +36,6 @@ const props = defineProps({
     type: Boolean,
   },
 })
-
-/** 抽屉显隐，重新声明便于双向绑定 */
-const visible = ref(props.visible)
 
 /** 搜索兴趣点列表 */
 const searchPoi = searchValue => {
