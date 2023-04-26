@@ -12,11 +12,11 @@ const iconsRename = () => {
   const unnameIcons = []
 
   fs.readdirSync(getIconPath()).forEach(item => {
-    const iconName = item.split('.')[0]
+    const fileName = item.split('.')[0]
     if (item.indexOf('sort=') === 0) {
-      icons.push(iconName)
+      icons.push(fileName)
     } else {
-      unnameIcons.push(iconName)
+      unnameIcons.push(fileName)
     }
   })
 
@@ -25,13 +25,13 @@ const iconsRename = () => {
 
   /** 将还没有生成名称的图标文件，按规则新生成名称 */
   unnameIcons.forEach((item, index) => {
-    const iconName = stringify({
+    const fileName = stringify({
       sort: startIndex + index,
       id: uuidv4().split('-').join(''),
     })
 
-    fs.renameSync(getIconPath(item), getIconPath(`${iconName}.png`))
-    icons.push(iconName)
+    fs.renameSync(getIconPath(item), getIconPath(`${fileName}.png`))
+    icons.push(fileName)
   })
 
   icons.sort((a, b) => {
@@ -45,7 +45,7 @@ const iconsRename = () => {
         length: icons.length,
         list: icons.map(item => {
           const { id } = parse(item)
-          return { id, iconName: item, type: 'image' }
+          return { id, fileName: item, type: 'file' }
         }),
       },
       null,

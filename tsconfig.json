@@ -6,11 +6,9 @@
     "ignoreDeprecations": "5.0",
     "noImplicitAny": false,
     "noImplicitThis": false,
-    "types": ["webpack-env"],
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    }
   },
   "references": [
     {

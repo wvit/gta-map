@@ -22,12 +22,12 @@
                     <IconList
                       v-show="poiIconFrom === 'my'"
                       :size="28"
-                      :iconList="myIconsStore.icons"
+                      :iconList="iconsStore.myIcons"
                     />
                     <IconList
                       v-show="poiIconFrom === 'all'"
                       :size="28"
-                      :iconList="iconsConfig.list"
+                      :iconList="iconsStore.allIcons"
                     />
                   </div>
                 </div>
@@ -46,12 +46,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Collapse, Form, Switch, Popover, Radio } from 'ant-design-vue'
-import { useMyIconsStore } from '@/stores/myIcons'
-import iconsConfig from '@/config/icons.json'
+import { useIconsStore } from '@/stores/icons'
 import IconList from './IconList.vue'
 
 const { BMapGL, mapInstance } = window
-const myIconsStore = useMyIconsStore()
+const iconsStore = useIconsStore()
 const poiIconFrom = ref<'my' | 'all'>('my')
 
 /** 搜索兴趣点列表 */

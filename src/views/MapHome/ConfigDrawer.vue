@@ -12,10 +12,10 @@
         <PoiConfig />
       </Tabs.TabPane>
       <Tabs.TabPane key="2" tab="我的图标">
-        <IconList :iconList="myIconsStore.icons" />
+        <IconList :iconList="iconsStore.myIcons" />
       </Tabs.TabPane>
       <Tabs.TabPane key="3" tab="全部图标">
-        <IconList :iconList="iconsConfig.list" />
+        <IconList :iconList="iconsStore.allIcons" />
       </Tabs.TabPane>
     </Tabs>
   </Drawer>
@@ -23,12 +23,11 @@
 
 <script setup lang="ts">
 import { Drawer, Tabs } from 'ant-design-vue'
-import { useMyIconsStore } from '@/stores/myIcons'
-import iconsConfig from '@/config/icons.json'
+import { useIconsStore } from '@/stores/icons'
 import IconList from './IconList.vue'
 import PoiConfig from './PoiConfig.vue'
 
-const myIconsStore = useMyIconsStore()
+const iconsStore = useIconsStore()
 
 const props = defineProps({
   /** 配置抽屉显隐 */

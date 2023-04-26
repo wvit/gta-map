@@ -15,7 +15,7 @@
         >
           <template #content>
             <div class="icon-operation">
-              <span @click="myIconsStore[findMyIcon(item) ? 'removeIcon' : 'addIcon'](item)">
+              <span @click="iconsStore[findMyIcon(item) ? 'removeMyIcon' : 'addMyIcon'](item)">
                 {{ findMyIcon(item) ? '从“我的图标”中移除' : '添加至“我的图标”' }}
               </span>
             </div>
@@ -33,7 +33,7 @@
 import { ref } from 'vue'
 import { Popover } from 'ant-design-vue'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
-import { useMyIconsStore } from '@/stores/myIcons'
+import { useIconsStore } from '@/stores/icons'
 import { createMarkerIcon } from '@/utils/createMarkerIcon'
 import { getIconSrc } from '@/utils/tools'
 
@@ -54,7 +54,7 @@ const props = withDefaults(
 )
 
 const { mapInstance } = window
-const myIconsStore = useMyIconsStore()
+const iconsStore = useIconsStore()
 const allowRenderNum = ref(0)
 
 /** 拖拽结束，将icon添加至地图 */
@@ -64,9 +64,9 @@ const iconDragEnd = (e, iconData) => {
   createMarkerIcon({ point, iconData, save: true })
 }
 
-/** 查找icon,是否在“我的图标”中已存在 */
+/** 查找图标，是否在“我的图标”中已存在 */
 const findMyIcon = iconData => {
-  return !!myIconsStore.icons.find(item => item.id === iconData.id)
+  return !!iconsStore.myIcons.find(item => item.id === iconData.id)
 }
 </script>
 

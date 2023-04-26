@@ -1,4 +1,5 @@
-import iconsConfig from '@/config/icons.json'
+import { useIconsStore } from '@/stores/icons'
+import type { IconData } from '@/stores/icons'
 
 /** 传入一个时间戳，返回一个日期字符串 */
 export const getDate = ({
@@ -36,12 +37,13 @@ export const getArr = length => {
 }
 
 /** 获取图标src */
-export const getIconSrc = iconData => {
+export const getIconSrc = (iconData: IconData) => {
   const { id, base64, type } = iconData
+  const iconsStore = useIconsStore()
 
-  if (type === 'image') {
-    const findIcon = iconsConfig.list.find(item => item.id === id)
-    return `/src/assets/gtaIcons/${findIcon?.iconName}.png`
+  if (type === 'file') {
+    const findIcon = iconsStore.allIcons.find(item => item.id === id)
+    return `/src/assets/gtaIcons/${findIcon?.fileName}.png`
   } else if (type === 'base64') {
     return base64
   }
