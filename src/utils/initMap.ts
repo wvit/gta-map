@@ -14,7 +14,7 @@ export const initMap = async () => {
     baiduMapScript.onload = () => {
       setTimeout(() => {
         const { BMapGL, BMAP_ANCHOR_BOTTOM_RIGHT } = window
-        const mapInstance = new BMapGL.Map('map-wrap')
+        const mapInstance = new BMapGL.Map('map-container')
         const scaleCtrl = new BMapGL.ScaleControl({
           anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
           offset: { width: 20, height: 20 },

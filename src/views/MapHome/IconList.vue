@@ -1,36 +1,38 @@
 <template>
   <div
     class="icon-list"
-    ref="iconListInstance"
     :style="{
       width: `calc(100% + ${props.scrollMargin}px)`,
     }"
   >
-    <template v-for="(item, index) in props.iconList" :key="index">
-      <Popover
-        v-if="index < allowRenderNum"
-        overlayClassName="icon-operation-popover"
-        placement="right"
-        trigger="click"
-      >
-        <template #content>
-          <div class="icon-operation">
-            <span @click="myIconsStore[findMyIcon(item) ? 'removeIcon' : 'addIcon'](item)">
-              {{ findMyIcon(item) ? '从“我的图标”中移除' : '添加至“我的图标”' }}
-            </span>
+    <InfiniteScroll @hitBottom="() => (allowRenderNum += 100)">
+      <template v-for="(item, index) in props.iconList" :key="index">
+        <Popover
+          v-if="index < allowRenderNum"
+          overlayClassName="icon-operation-popover"
+          placement="right"
+          trigger="click"
+        >
+          <template #content>
+            <div class="icon-operation">
+              <span @click="myIconsStore[findMyIcon(item) ? 'removeIcon' : 'addIcon'](item)">
+                {{ findMyIcon(item) ? '从“我的图标”中移除' : '添加至“我的图标”' }}
+              </span>
+            </div>
+          </template>
+          <div class="icon-item" :style="{ width: `${props.size}px`, height: `${props.size}px` }">
+            <img draggable :src="getIconSrc(item)" @dragend="iconDragEnd($event, item)" />
           </div>
-        </template>
-        <div class="icon-item" :style="{ width: `${props.size}px`, height: `${props.size}px` }">
-          <img draggable :src="getIconSrc(item)" @dragend="iconDragEnd($event, item)" />
-        </div>
-      </Popover>
-    </template>
+        </Popover>
+      </template>
+    </InfiniteScroll>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref } from 'vue'
 import { Popover } from 'ant-design-vue'
+import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { useMyIconsStore } from '@/stores/myIcons'
 import { createMarkerIcon } from '@/utils/createMarkerIcon'
 import { getIconSrc } from '@/utils/tools'
@@ -53,8 +55,6 @@ const props = withDefaults(
 
 const { mapInstance } = window
 const myIconsStore = useMyIconsStore()
-const wrapMounted = ref(false)
-const iconListInstance = ref()
 const allowRenderNum = ref(0)
 
 /** 拖拽结束，将icon添加至地图 */
@@ -68,21 +68,6 @@ const iconDragEnd = (e, iconData) => {
 const findMyIcon = iconData => {
   return !!myIconsStore.icons.find(item => item.id === iconData.id)
 }
-
-/** 允许加载渲染下一页数据 */
-const loadNextPage = () => {
-  const { offsetWidth, offsetHeight } = iconListInstance.value || {}
-  const columnNum = Math.floor((offsetWidth - props.scrollMargin) / (props.size + 16))
-  const rowNum = Math.floor(offsetHeight / (props.size + 16))
-
-  allowRenderNum.value += columnNum * (rowNum + 5)
-}
-
-onMounted(() => {
-  setTimeout(() => {
-    loadNextPage()
-  })
-})
 </script>
 
 <style scoped lang="less">
@@ -96,6 +81,7 @@ onMounted(() => {
 
 .icon-list {
   display: flex;
+  align-content: flex-start;
   flex-wrap: wrap;
   user-select: none;
   height: 100%;

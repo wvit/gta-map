@@ -1,6 +1,6 @@
 <template>
-  <div class="home-wrap">
-    <div id="map-wrap" @dragover="e => e.preventDefault()"></div>
+  <div class="map-wrap">
+    <div id="map-container" @dragover="e => e.preventDefault()"></div>
     <Avatar
       class="user-avatar"
       :size="50"
@@ -14,11 +14,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
-import ConfigDrawer from '@/components/ConfigDrawer/index.vue'
+import ConfigDrawer from './ConfigDrawer.vue'
 import { initMap } from '@/utils/initMap'
 
 /** 配置栏显隐 */
-const configVisible = ref(true)
+const configVisible = ref(false)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="less">
-.home-wrap {
+.map-wrap {
   position: relative;
 
   .user-avatar {
@@ -45,7 +45,7 @@ onMounted(async () => {
   }
 }
 
-#map-wrap {
+#map-container {
   width: 100vw;
   height: 100vh;
 }

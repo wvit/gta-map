@@ -7,19 +7,28 @@
             <Switch :checked="true" checkedChildren="显示" unCheckedChildren="隐藏" />
           </Form.Item>
           <Form.Item label="展示图标" name="display-icon">
-            <Popover overlayClassName="poi-icon-setting-popover" placement="right" trigger="click">
+            <Popover overlayClassName="poi-icon-setting-popover" placement="right">
               <template #content>
                 <div class="poi-icon-setting">
                   <div class="setting-header">
                     <span>从</span>
-                    <Radio.Group value="my">
+                    <Radio.Group v-model:value="poiIconFrom">
                       <Radio.Button value="my">我的图标</Radio.Button>
                       <Radio.Button value="all">全部图标</Radio.Button>
                     </Radio.Group>
                     <span>获取</span>
                   </div>
                   <div class="setting-body">
-                    <IconList :size="28" :iconList="iconsConfig.list" />
+                    <IconList
+                      v-show="poiIconFrom === 'my'"
+                      :size="28"
+                      :iconList="myIconsStore.icons"
+                    />
+                    <IconList
+                      v-show="poiIconFrom === 'all'"
+                      :size="28"
+                      :iconList="iconsConfig.list"
+                    />
                   </div>
                 </div>
               </template>
@@ -35,11 +44,15 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Collapse, Form, Switch, Popover, Radio } from 'ant-design-vue'
-import IconList from './IconList.vue'
+import { useMyIconsStore } from '@/stores/myIcons'
 import iconsConfig from '@/config/icons.json'
+import IconList from './IconList.vue'
 
 const { BMapGL, mapInstance } = window
+const myIconsStore = useMyIconsStore()
+const poiIconFrom = ref<'my' | 'all'>('my')
 
 /** 搜索兴趣点列表 */
 const searchPoi = searchValue => {
@@ -71,7 +84,7 @@ const searchPoi = searchValue => {
 
     & > span {
       margin: 0 16px;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 
