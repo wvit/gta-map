@@ -1,5 +1,5 @@
 <template>
-  <div class="map-wrap">
+  <div class="map-home">
     <div id="map-container" @dragover="e => e.preventDefault()"></div>
     <Avatar
       class="user-avatar"
@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="less">
-.map-wrap {
+.map-home {
   position: relative;
 
   .user-avatar {
