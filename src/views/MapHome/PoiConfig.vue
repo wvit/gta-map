@@ -1,12 +1,16 @@
 <template>
   <div class="poi-config">
-    <Collapse :defaultActiveKey="1" ghost>
-      <Collapse.Panel key="1" header="商店">
+    <Collapse :defaultActiveKey="getArr(poiConfigs.length)" ghost>
+      <Collapse.Panel v-for="(item, index) in poiConfigs" :key="index" :header="item.name">
         <Form>
-          <Form.Item label="图标显隐" name="visible">
-            <Switch :checked="true" checkedChildren="显示" unCheckedChildren="隐藏" />
+          <Form.Item label="图标显隐">
+            <Switch
+              v-model:checked="item.visible"
+              checkedChildren="显示"
+              unCheckedChildren="隐藏"
+            />
           </Form.Item>
-          <Form.Item label="展示图标" name="display-icon">
+          <Form.Item label="展示图标" name="iconData">
             <Popover overlayClassName="poi-icon-setting-popover" placement="right">
               <template #content>
                 <div class="poi-icon-setting">
@@ -23,11 +27,13 @@
                       v-show="poiIconFrom === 'my'"
                       :size="28"
                       :iconList="iconsStore.myIcons"
+                      @selectIcon="setPoiIcon(item, index)"
                     />
                     <IconList
                       v-show="poiIconFrom === 'all'"
                       :size="28"
                       :iconList="iconsStore.allIcons"
+                      @selectIcon="setPoiIcon(item, index)"
                     />
                   </div>
                 </div>
@@ -47,18 +53,29 @@
 import { ref } from 'vue'
 import { Collapse, Form, Switch, Popover, Radio } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
+import { getArr } from '@/utils/tools'
 import IconList from './IconList.vue'
 
 const { BMapGL, mapInstance } = window
 const iconsStore = useIconsStore()
 const poiIconFrom = ref<'my' | 'all'>('my')
+const poiConfigs = ref([
+  {
+    name: '商店',
+    visible: true,
+    iconData: {},
+  },
+])
+
+/** 设置兴趣点图标 */
+const setPoiIcon = (iconData, index) => {
+  console.log(11111, poiConfigs.value)
+}
 
 /** 搜索兴趣点列表 */
 const searchPoi = searchValue => {
   const options = {
-    onSearchComplete: results => {
-      console.log(111111, results)
-    },
+    onSearchComplete: results => {},
     pageCapacity: 100,
   }
   const local = new BMapGL.LocalSearch(mapInstance, options)

@@ -6,16 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import {
-  ref,
-  watch,
-  onUnmounted,
-  onMounted,
-  nextTick,
-  onRenderTriggered,
-  onRenderTracked,
-} from 'vue'
+import { ref, onUnmounted, onMounted, onRenderTriggered } from 'vue'
 import type { CSSProperties } from 'vue'
+
+const emit = defineEmits(['hitBottom'])
 
 const props = withDefaults(
   defineProps<{
@@ -26,8 +20,6 @@ const props = withDefaults(
   }>(),
   {}
 )
-
-const emit = defineEmits(['hitBottom'])
 
 const targetInstance = ref()
 const targetObserver = ref()
@@ -45,6 +37,7 @@ const checkTargetHide = () => {
 
     /** 因为children值会多次变化，所以每次触发完需要销毁掉 */
     targetVisibleObserver.value.disconnect?.()
+    
     if (entries[0].intersectionRatio) {
       /** 如果目标还没被隐藏，就再次触发事件，类似于递归 */
       emit('hitBottom')

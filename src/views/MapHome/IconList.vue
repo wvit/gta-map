@@ -14,13 +14,18 @@
           trigger="click"
         >
           <template #content>
-            <div class="icon-operation">
+            <!-- 如果传入了 onSelectIcon 事件，就不展示 popover 的内容  -->
+            <div v-if="!onSelectIcon" class="icon-operation">
               <span @click="iconsStore[findMyIcon(item) ? 'removeMyIcon' : 'addMyIcon'](item)">
                 {{ findMyIcon(item) ? '从“我的图标”中移除' : '添加至“我的图标”' }}
               </span>
             </div>
           </template>
-          <div class="icon-item" :style="{ width: `${props.size}px`, height: `${props.size}px` }">
+          <div
+            class="icon-item"
+            :style="{ width: `${props.size}px`, height: `${props.size}px` }"
+            @click="$emit('selectIcon', item)"
+          >
             <img draggable :src="getIconSrc(item)" @dragend="iconDragEnd($event, item)" />
           </div>
         </Popover>
@@ -30,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 import { Popover } from 'ant-design-vue'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { useIconsStore } from '@/stores/icons'
@@ -52,6 +57,8 @@ const props = withDefaults(
     scrollMargin: 12,
   }
 )
+
+const { onSelectIcon } = getCurrentInstance()?.vnode.props || {}
 
 const { mapInstance } = window
 const iconsStore = useIconsStore()

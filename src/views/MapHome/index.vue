@@ -18,7 +18,7 @@ import ConfigDrawer from './ConfigDrawer.vue'
 import { initMap } from '@/utils/initMap'
 
 /** 配置栏显隐 */
-const configVisible = ref(false)
+const configVisible = ref(true)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)

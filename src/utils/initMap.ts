@@ -33,7 +33,7 @@ export const initMap = async () => {
         initMarkerIcons()
 
         resolve()
-      }, 500)
+      }, 1000)
     }
   })
 }

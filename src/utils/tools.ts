@@ -33,7 +33,7 @@ export const getDate = ({
 export const getArr = length => {
   return Array(length)
     .fill(null)
-    .map((_, index) => index + 1)
+    .map((_, index) => index)
 }
 
 /** 获取图标src */
