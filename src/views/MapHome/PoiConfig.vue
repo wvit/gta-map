@@ -27,13 +27,13 @@
                       v-show="poiIconFrom === 'my'"
                       :size="28"
                       :iconList="iconsStore.myIcons"
-                      @selectIcon="setPoiIcon(item, index)"
+                      @selectIcon="iconData => setPoiIcon(item, iconData)"
                     />
                     <IconList
                       v-show="poiIconFrom === 'all'"
                       :size="28"
                       :iconList="iconsStore.allIcons"
-                      @selectIcon="setPoiIcon(item, index)"
+                      @selectIcon="iconData => setPoiIcon(item, iconData)"
                     />
                   </div>
                 </div>
@@ -61,6 +61,7 @@ const iconsStore = useIconsStore()
 const poiIconFrom = ref<'my' | 'all'>('my')
 const poiConfigs = ref([
   {
+    key: 'store',
     name: '商店',
     visible: true,
     iconData: {},
@@ -68,8 +69,8 @@ const poiConfigs = ref([
 ])
 
 /** 设置兴趣点图标 */
-const setPoiIcon = (iconData, index) => {
-  console.log(11111, poiConfigs.value)
+const setPoiIcon = (poiConfig, iconData) => {
+  console.log(11111, poiConfig.value, iconData)
 }
 
 /** 搜索兴趣点列表 */
