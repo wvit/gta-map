@@ -1,6 +1,9 @@
 import { StoreHandle } from './storeHandle'
 import type { DbConfig, CreateStoreData, DeleteStoreData } from './interface'
 
+/** 需要创建的数据表名称 */
+export const storeNames = ['myIcons', 'markerIcons', 'poiIcons'] as const
+
 export class Db {
   constructor(config) {
     this.config = config
@@ -69,15 +72,13 @@ export class Db {
       /** 保存打开数据库的结果 */
       this.dataBase = result
 
-      await this.createObjectStore({
-        storeName: 'myIcons',
-        options: { keyPath: 'id' },
-      })
-
-      await this.createObjectStore({
-        storeName: 'markerIcons',
-        options: { keyPath: 'id' },
-      })
+      /** 循环创建数据表 */
+      for (let i = 0; i < storeNames.length; i++) {
+        await this.createObjectStore({
+          storeName: storeNames[i],
+          options: { keyPath: 'id' },
+        })
+      }
 
       /** 设置一个状态，告诉其他地方，数据库已准备就绪 */
       this.dbReady = true

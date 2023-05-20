@@ -1,4 +1,4 @@
-import type { Db } from './index'
+import type { Db, storeNames } from './index'
 
 /** 实例化数据表操作方法参数 */
 export interface StoreHandleProps {
@@ -7,36 +7,23 @@ export interface StoreHandleProps {
 }
 
 export namespace StoreHandles {
-  /** 添加数据方法 */
-  type Add = (data: any) => Promise<boolean>
-
-  /** 获取查询条件的分页数据 */
-  type GetPage<T = Query> = (query: T) => Promise<PagingValue>
-
-  /** 获取查询条件的所有数据 */
-  type GetAll<T = Query> = (query?: T) => Promise<StoreAllValue>
-
-  /** 批量删除数据 */
-  type Delete = (id: string) => Promise<boolean>
+  /** 数据表 */
+  export type Stores = (typeof storeNames)[number]
 
   /** 数据库暴露出去的操作方法 */
-  export interface Handles {
-    /** 我的图标数据表 */
-    myIcons: {
-      add: Add
-      getPage: GetPage
-      getAll: GetAll
-      delete: Delete
+  export type Handles = Record<
+    Stores,
+    {
+      /** 添加数据方法 */
+      add: (data) => Promise<boolean>
+      /** 获取查询条件的分页数据 */
+      getPage: (query) => Promise<PagingValue>
+      /** 获取查询条件的所有数据 */
+      getAll: (query?) => Promise<StoreAllValue>
+      /** 批量删除数据 */
+      delete: (id: string) => Promise<boolean>
     }
-
-    /** 地图标注图标数据表 */
-    markerIcons: {
-      add: Add
-      getPage: GetPage
-      getAll: GetAll
-      delete: Delete
-    }
-  }
+  >
 }
 
 /** 实例化Db配置 */

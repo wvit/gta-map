@@ -1,4 +1,5 @@
 import { getDate } from '@/utils/tools'
+import { storeNames } from './index'
 import type {
   PagingValue,
   StoreAllValue,
@@ -18,34 +19,41 @@ export class StoreHandle {
 
   /** 获取数据表可操作的方法 */
   get storeHandles(): StoreHandles.Handles {
-    return {
-      myIcons: {
-        add: data => this.createData('myIcons', data),
-        delete: id => this.deleteData('myIcons', id),
-        getPage: query => this.getPageData('myIcons', { query }),
-        getAll: () => this.getStoreAllData('myIcons'),
-      },
-      markerIcons: {
-        add: data => this.createData('markerIcons', data),
-        delete: id => this.deleteData('markerIcons', id),
-        getPage: query => this.getPageData('markerIcons', { query }),
-        getAll: () => this.getStoreAllData('markerIcons'),
-      },
-    }
+    const handles = {} as StoreHandles.Handles
+
+    storeNames.forEach(key => {
+      handles[key] = {
+        add: data => this.createData(key, data),
+        delete: id => this.deleteData(key, id),
+        getPage: query => this.getPageData(key, { query }),
+        getAll: () => this.getStoreAllData(key),
+      }
+    })
+
+    return handles
   }
 
   /** 向数据表新增数据 */
   async createData(storeName, data) {
     const store = await this.getObjectStore(storeName)
     const addData = Array.isArray(data) ? data.pop() : data
-    const request = store.add(this.getCreateData(addData))
+    const findData = store.get(addData.id)
 
-    return new Promise<boolean>((resolve, reject) => {
-      request.onsuccess = () => {
-        if (data.length) this.createData(storeName, data)
-        resolve(true)
+    return new Promise<boolean>(resolve => {
+      findData.onsuccess = () => {
+        let request = null as unknown as IDBRequest<IDBValidKey>
+
+        if (findData.result) {
+          request = store.put({ ...findData.result, ...addData })
+        } else {
+          request = store.add(this.getCreateData(addData))
+        }
+
+        request.onsuccess = () => {
+          if (data.length) this.createData(storeName, data)
+          resolve(true)
+        }
       }
-      request.onerror = reject
     })
   }
 

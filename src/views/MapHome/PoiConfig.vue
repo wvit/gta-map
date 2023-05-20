@@ -54,6 +54,7 @@ import { ref } from 'vue'
 import { Collapse, Form, Switch, Popover, Radio } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import { getArr } from '@/utils/tools'
+import { storeHandles } from '@/IDB'
 import IconList from './IconList.vue'
 
 const { BMapGL, mapInstance } = window
@@ -61,16 +62,18 @@ const iconsStore = useIconsStore()
 const poiIconFrom = ref<'my' | 'all'>('my')
 const poiConfigs = ref([
   {
-    key: 'store',
+    id: 'store',
     name: '商店',
     visible: true,
-    iconData: {},
+    iconId: '',
   },
 ])
 
 /** 设置兴趣点图标 */
 const setPoiIcon = (poiConfig, iconData) => {
-  console.log(11111, poiConfig.value, iconData)
+  poiConfig.iconId = iconData.id
+
+  storeHandles.poiIcons.add(poiConfig)
 }
 
 /** 搜索兴趣点列表 */
