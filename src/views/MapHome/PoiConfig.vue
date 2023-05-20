@@ -5,13 +5,14 @@
         <Form>
           <Form.Item label="图标显隐">
             <Switch
-              v-model:checked="item.visible"
               checkedChildren="显示"
               unCheckedChildren="隐藏"
+              :checked="item.visible"
+              @change="visible => setPoiConfig(item, { visible })"
             />
           </Form.Item>
           <Form.Item label="展示图标" name="iconData">
-            <Popover overlayClassName="poi-icon-setting-popover" placement="right">
+            <Popover overlayClassName="poi-icon-setting-popover" placement="right" trigger="click">
               <template #content>
                 <div class="poi-icon-setting">
                   <div class="setting-header">
@@ -25,21 +26,23 @@
                   <div class="setting-body">
                     <IconList
                       v-show="poiIconFrom === 'my'"
-                      :size="28"
+                      :size="36"
                       :iconList="iconsStore.myIcons"
-                      @selectIcon="iconData => setPoiIcon(item, iconData)"
+                      :activeId="item.iconId"
+                      @selectIcon="iconData => setPoiConfig(item, { iconId: iconData.id })"
                     />
                     <IconList
                       v-show="poiIconFrom === 'all'"
-                      :size="28"
+                      :size="36"
                       :iconList="iconsStore.allIcons"
-                      @selectIcon="iconData => setPoiIcon(item, iconData)"
+                      :activeId="item.iconId"
+                      @selectIcon="iconData => setPoiConfig(item, { iconId: iconData.id })"
                     />
                   </div>
                 </div>
               </template>
               <div class="display-icon">
-                <img src="/src/assets/gtaIcons/sort=4&id=5bb1466a6f9e4ef6be7080c1084ddc21.png" />
+                <img :src="getIconSrc(item.iconId)" />
               </div>
             </Popover>
           </Form.Item>
@@ -53,7 +56,7 @@
 import { ref } from 'vue'
 import { Collapse, Form, Switch, Popover, Radio } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
-import { getArr } from '@/utils/tools'
+import { getArr, getIconSrc } from '@/utils/tools'
 import { storeHandles } from '@/IDB'
 import IconList from './IconList.vue'
 
@@ -65,15 +68,27 @@ const poiConfigs = ref([
     id: 'store',
     name: '商店',
     visible: true,
-    iconId: '',
+    iconId: '0ab9333899764dc1a8314445af408a95',
   },
 ])
 
-/** 设置兴趣点图标 */
-const setPoiIcon = (poiConfig, iconData) => {
-  poiConfig.iconId = iconData.id
+/** 初始化poi配置列表 */
+const initPoiConfigs = async () => {
+  const { list } = await storeHandles.poiConfigs.getAll()
 
-  storeHandles.poiIcons.add(poiConfig)
+  poiConfigs.value.forEach((poiItem, poiIndex) => {
+    const findPoi = list.find(item => item.id === poiItem.id)
+    poiConfigs.value[poiIndex] = { ...poiItem, ...findPoi }
+  })
+}
+
+/** 设置兴趣点配置信息 */
+const setPoiConfig = (poiConfig, changeValue) => {
+  storeHandles.poiConfigs.add({
+    ...poiConfig,
+    ...changeValue,
+  })
+  initPoiConfigs()
 }
 
 /** 搜索兴趣点列表 */
@@ -86,6 +101,8 @@ const searchPoi = searchValue => {
 
   local.search(searchValue.split('，'))
 }
+
+initPoiConfigs()
 </script>
 
 <style scoped lang="less">

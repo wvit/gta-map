@@ -37,13 +37,14 @@ export const getArr = length => {
 }
 
 /** 获取图标src */
-export const getIconSrc = (iconData: IconData) => {
-  const { id, base64, type } = iconData
+export const getIconSrc = iconId => {
   const iconsStore = useIconsStore()
+  const findIcon = key => iconsStore[key].find(item => item.id === iconId)
+  const iconData = findIcon('allIcons') || findIcon('myIcons')
+  const { fileName, base64, type } = iconData
 
   if (type === 'file') {
-    const findIcon = iconsStore.allIcons.find(item => item.id === id)
-    return `/src/assets/gtaIcons/${findIcon?.fileName}.png`
+    return `/src/assets/gtaIcons/${fileName}.png`
   } else if (type === 'base64') {
     return base64
   }

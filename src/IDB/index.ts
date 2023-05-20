@@ -2,7 +2,7 @@ import { StoreHandle } from './storeHandle'
 import type { DbConfig, CreateStoreData, DeleteStoreData } from './interface'
 
 /** 需要创建的数据表名称 */
-export const storeNames = ['myIcons', 'markerIcons', 'poiIcons'] as const
+export const storeNames = ['myIcons', 'markerIcons', 'poiConfigs'] as const
 
 export class Db {
   constructor(config) {
@@ -79,6 +79,8 @@ export class Db {
           options: { keyPath: 'id' },
         })
       }
+
+      // this.deleteObjectStore({ storeName: 'poiIcons' })
 
       /** 设置一个状态，告诉其他地方，数据库已准备就绪 */
       this.dbReady = true

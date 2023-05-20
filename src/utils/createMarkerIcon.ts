@@ -6,16 +6,16 @@ import { getIconSrc } from '@/utils/tools'
 export const createMarkerIcon = (options: {
   /** 图标经纬度坐标 */
   point: { lng: number; lat: number }
-  /** 图标数据 */
-  iconData: any
+  /** 图标id */
+  iconId: string
   /** 是否保存至数据库 */
   save?: boolean
 }) => {
   const { mapInstance, BMapGL } = window
-  const { point, iconData, save } = options
+  const { point, iconId, save } = options
   const { lng, lat } = point
-  const id = [iconData.id, lng, lat].join('-')
-  const iconSrc = getIconSrc(iconData)
+  const id = [iconId, lng, lat].join('-')
+  const iconSrc = getIconSrc(iconId)
 
   const markerIcon = Dom.create('img', {
     src: iconSrc,
@@ -35,7 +35,7 @@ export const createMarkerIcon = (options: {
       id,
       lng,
       lat,
-      iconData: JSON.parse(JSON.stringify(iconData)),
+      iconId,
     })
   }
 

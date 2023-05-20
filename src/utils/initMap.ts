@@ -43,8 +43,8 @@ const initMarkerIcons = async () => {
   const { list } = await storeHandles.markerIcons.getAll()
 
   list.forEach(async item => {
-    const { iconData, lng, lat } = item
-    createMarkerIcon({ iconData, point: { lng, lat } })
+    const { iconId, lng, lat } = item
+    createMarkerIcon({ iconId, point: { lng, lat } })
   })
 }
 

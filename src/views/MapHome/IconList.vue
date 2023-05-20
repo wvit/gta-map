@@ -22,11 +22,11 @@
             </div>
           </template>
           <div
-            class="icon-item"
+            :class="['icon-item', activeId === item.id ? 'icon-active' : '']"
             :style="{ width: `${props.size}px`, height: `${props.size}px` }"
             @click="$emit('selectIcon', item)"
           >
-            <img draggable :src="getIconSrc(item)" @dragend="iconDragEnd($event, item)" />
+            <img draggable :src="getIconSrc(item.id)" @dragend="iconDragEnd($event, item.id)" />
           </div>
         </Popover>
       </template>
@@ -47,14 +47,17 @@ const props = withDefaults(
     /** 图标列表 */
     iconList: any[]
     /** 图标大小 */
-    size: number
+    size?: number
     /** 用于调整滚动条与内容区的间距 */
-    scrollMargin: number
+    scrollMargin?: number
+    /** 当前选中的图标id */
+    activeId?: string
   }>(),
   {
     iconList: () => [],
-    size: 32,
+    size: 40,
     scrollMargin: 12,
+    activeId: '',
   }
 )
 
@@ -65,10 +68,10 @@ const iconsStore = useIconsStore()
 const allowRenderNum = ref(0)
 
 /** 拖拽结束，将icon添加至地图 */
-const iconDragEnd = (e, iconData) => {
+const iconDragEnd = (e, iconId) => {
   const { x, y } = e
   const point = mapInstance.pixelToPoint({ x, y: y - 8 })
-  createMarkerIcon({ point, iconData, save: true })
+  createMarkerIcon({ point, iconId, save: true })
 }
 
 /** 查找图标，是否在“我的图标”中已存在 */
@@ -101,7 +104,8 @@ const findMyIcon = iconData => {
   .icon-item {
     margin: 4px;
     padding: 4px;
-    box-sizing: content-box;
+    border-radius: 2px;
+    box-sizing: border-box;
     cursor: pointer;
 
     &:hover {
@@ -112,6 +116,10 @@ const findMyIcon = iconData => {
       width: 100%;
       height: 100%;
     }
+  }
+
+  .icon-active {
+    border: 1px solid #4091f7;
   }
 }
 </style>
