@@ -62,7 +62,10 @@ import IconList from './IconList.vue'
 
 const { BMapGL, mapInstance } = window
 const iconsStore = useIconsStore()
+
+/** 当前选中图标分类 */
 const poiIconFrom = ref<'my' | 'all'>('my')
+/** 已配置的兴趣点图标 */
 const poiConfigs = ref([
   {
     id: 'store',

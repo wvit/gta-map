@@ -27,14 +27,14 @@ import { useIconsStore } from '@/stores/icons'
 import IconList from './IconList.vue'
 import PoiConfig from './PoiConfig.vue'
 
-const iconsStore = useIconsStore()
-
 const props = defineProps({
   /** 配置抽屉显隐 */
   visible: {
     type: Boolean,
   },
 })
+
+const iconsStore = useIconsStore()
 </script>
 
 <style lang="less">

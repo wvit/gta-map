@@ -62,9 +62,10 @@ const props = withDefaults(
 )
 
 const { onSelectIcon } = getCurrentInstance()?.vnode.props || {}
-
 const { mapInstance } = window
 const iconsStore = useIconsStore()
+
+/** 当前允许渲染icon的数量 */
 const allowRenderNum = ref(0)
 
 /** 拖拽结束，将icon添加至地图 */
