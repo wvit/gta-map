@@ -58,7 +58,7 @@ import { Collapse, Form, Switch, Popover, Radio } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import { getArr, getIconSrc } from '@/utils/tools'
 import { storeHandles } from '@/IDB'
-import IconList from './IconList.vue'
+import IconList from '@/views/Home/IconList.vue'
 
 const { BMapGL, mapInstance } = window
 const iconsStore = useIconsStore()

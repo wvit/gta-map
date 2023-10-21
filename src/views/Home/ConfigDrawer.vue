@@ -8,13 +8,10 @@
     @close="$emit('update:visible', false)"
   >
     <Tabs defaultActiveKey="1">
-      <Tabs.TabPane key="1" tab="兴趣点分类">
-        <PoiConfig />
-      </Tabs.TabPane>
-      <Tabs.TabPane key="2" tab="我的图标">
+      <Tabs.TabPane key="1" tab="我的图标">
         <IconList :iconList="iconsStore.myIcons" />
       </Tabs.TabPane>
-      <Tabs.TabPane key="3" tab="全部图标">
+      <Tabs.TabPane key="2" tab="全部图标">
         <IconList :iconList="iconsStore.allIcons" />
       </Tabs.TabPane>
     </Tabs>
@@ -25,7 +22,6 @@
 import { Drawer, Tabs } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import IconList from './IconList.vue'
-import PoiConfig from './PoiConfig.vue'
 
 const props = defineProps({
   /** 配置抽屉显隐 */
