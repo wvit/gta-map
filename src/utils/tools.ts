@@ -1,5 +1,4 @@
 import { useIconsStore } from '@/stores/icons'
-import type { IconData } from '@/stores/icons'
 
 /** 传入一个时间戳，返回一个日期字符串 */
 export const getDate = ({
