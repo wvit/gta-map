@@ -6,6 +6,8 @@ export interface DomExtensionMethods {
   rect: () => object
   /** 添加子节点 */
   add: (child: Node) => Node
+  /** 销毁当前节点 */
+  destroy: () => Node
   /** 创建并添加子节点 */
   create: (tagName: string, attr: { [key: string]: any }) => Node
   /** 设置节点样式 */
@@ -69,23 +71,29 @@ export class Dom {
       }
     }
 
-    // 获取元素相对于浏览器的信息
+    /** 获取元素相对于浏览器的信息 */
     node.rect = () => node.getBoundingClientRect()
 
-    // 添加子节点
+    /** 添加子节点 */
     node.add = child => {
       node.appendChild(child)
       return node
     }
 
-    // 创建并添加子节点
+    /** 销毁当前节点 */
+    node.destroy = () => {
+      node.parentNode?.removeChild(node)
+      return node
+    }
+
+    /** 创建并添加子节点 */
     node.create = function (tagName: string, attrs: { [key: string]: any }) {
       const tag = Dom.create(tagName, attrs)
       this.add(tag)
       return tag
     }
 
-    // 设置节点样式
+    /** 设置节点样式 */
     node.setStyle = function (style: { [key: string]: string }) {
       Dom.setStyle(this, style)
       return this

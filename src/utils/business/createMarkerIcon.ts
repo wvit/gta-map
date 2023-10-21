@@ -1,6 +1,6 @@
 import { storeHandles } from '@/IDB'
-import { Dom } from './dom'
 import { getIconSrc } from '@/utils/tools'
+import { Dom } from '../dom'
 
 /** 创建一个地图标注图标 */
 export const createMarkerIcon = (options: {

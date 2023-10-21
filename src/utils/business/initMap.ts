@@ -1,6 +1,6 @@
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
 import { storeHandles } from '@/IDB'
-import { Dom } from './dom'
+import { Dom } from '../dom'
 import { createMarkerIcon } from './createMarkerIcon'
 
 /** 初始化地图配置 */

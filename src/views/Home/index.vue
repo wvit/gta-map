@@ -14,8 +14,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
+import { initMap } from '@/utils/business/initMap'
 import ConfigDrawer from './ConfigDrawer.vue'
-import { initMap } from '@/utils/initMap'
 
 /** 配置栏显隐 */
 const configVisible = ref(true)

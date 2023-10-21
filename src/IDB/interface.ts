@@ -1,4 +1,5 @@
-import type { Db, storeNames } from './index'
+import type { storeNames } from './config'
+import type { Db } from './index'
 
 /** 实例化数据表操作方法参数 */
 export interface StoreHandleProps {

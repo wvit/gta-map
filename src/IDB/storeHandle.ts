@@ -1,5 +1,5 @@
 import { getDate } from '@/utils/tools'
-import { storeNames } from './index'
+import { storeNames } from './config'
 import type {
   PagingValue,
   StoreAllValue,
@@ -124,7 +124,11 @@ export class StoreHandle {
   /** 新建数据添加公共字段 */
   getCreateData(data) {
     const id = Date.now()
-    return { id: id.toString(), createDate: getDate({ time: id, full: true }), ...data }
+    return {
+      id: id.toString(),
+      createDate: getDate({ time: id, full: true }),
+      ...data,
+    }
   }
 
   /** 检查数据表是否准备完毕 */
@@ -143,6 +147,8 @@ export class StoreHandle {
   async getObjectStore(storeName) {
     await this.inspectStoreMounted()
     const { db } = this.props
-    return db.dataBase.transaction([storeName], 'readwrite').objectStore(storeName)
+    return db.dataBase
+      .transaction([storeName], 'readwrite')
+      .objectStore(storeName)
   }
 }
