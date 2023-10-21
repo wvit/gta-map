@@ -26,7 +26,7 @@
             :style="{ width: `${props.size}px`, height: `${props.size}px` }"
             @click="$emit('selectIcon', item)"
           >
-            <img draggable :src="getIconSrc(item.id)" @dragend="iconDragEnd($event, item.id)" />
+            <img draggable :src="getIconSrc(item.id)" @dragend="iconDragEnd($event, item)" />
           </div>
         </Popover>
       </template>
@@ -69,10 +69,10 @@ const iconsStore = useIconsStore()
 const allowRenderNum = ref(0)
 
 /** 拖拽结束，将icon添加至地图 */
-const iconDragEnd = (e, iconId) => {
+const iconDragEnd = (e, iconData) => {
   const { x, y } = e
   const point = mapInstance.pixelToPoint({ x, y: y - 8 })
-  createMarkerIcon({ point, iconId, save: true })
+  createMarkerIcon({ point, iconData, save: true })
 }
 
 /** 查找图标，是否在“我的图标”中已存在 */

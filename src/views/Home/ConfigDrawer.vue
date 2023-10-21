@@ -8,10 +8,13 @@
     @close="$emit('update:visible', false)"
   >
     <Tabs defaultActiveKey="1">
-      <Tabs.TabPane key="1" tab="我的图标">
+      <Tabs.TabPane key="1" tab="已使用图标">
+        <IconList :iconList="iconsStore.markerIcons.map(item => item.iconData)" />
+      </Tabs.TabPane>
+      <Tabs.TabPane key="2" tab="我的图标">
         <IconList :iconList="iconsStore.myIcons" />
       </Tabs.TabPane>
-      <Tabs.TabPane key="2" tab="全部图标">
+      <Tabs.TabPane key="3" tab="全部图标">
         <IconList :iconList="iconsStore.allIcons" />
       </Tabs.TabPane>
     </Tabs>

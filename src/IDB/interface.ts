@@ -72,7 +72,7 @@ export interface CreateStoreData {
     /** 索引名称 */
     indexName: string
     /** 索引对应字段 */
-    fieldName: string | Iterable<string>
+    fieldName: string | string[]
     /** 其他参数 */
     params?: IDBIndexParameters
   }[]

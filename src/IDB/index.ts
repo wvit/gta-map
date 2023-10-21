@@ -111,7 +111,7 @@ export class Db {
   /** 操作数据库公共逻辑 */
   handleObjectStore = async callback => {
     return new Promise<void>(resolve => {
-      if (this.dbRequest) {
+      if (this.dbRequest?.readyState === 'done') {
         const { result, onsuccess, onupgradeneeded } = this.dbRequest
         const { name } = this.config
         const { version } = result

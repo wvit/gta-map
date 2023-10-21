@@ -4,7 +4,7 @@ import { message } from 'ant-design-vue'
 import { storeHandles } from '@/IDB'
 import iconsConfig from '@/config/icons.json'
 
-export interface IconData {
+export type IconData = {
   /** 图标唯一id */
   id: string
   /** 图标资源类型 */
@@ -21,11 +21,16 @@ export const useIconsStore = defineStore('icons', () => {
   const myIcons = ref<IconData[]>([])
   /** 全部图标 */
   const allIcons = ref<IconData[]>(iconsConfig.list as IconData[])
+  /** 已使用的图标 */
+  const markerIcons = ref<{ iconData: IconData; [key: string]: any }[]>([])
 
   /** 从数据库拿到所有icon */
   const initMyIcons = async () => {
-    const { list } = await storeHandles.myIcons.getAll()
-    myIcons.value = list
+    const { list: myIconList } = await storeHandles.myIcons.getAll()
+    const { list: markerIconList } = await storeHandles.markerIcons.getAll()
+
+    myIcons.value = myIconList
+    markerIcons.value = markerIconList
   }
 
   /** 将icon添加进"我的图标“ */
@@ -44,5 +49,5 @@ export const useIconsStore = defineStore('icons', () => {
 
   initMyIcons()
 
-  return { myIcons, allIcons, addMyIcon, removeMyIcon }
+  return { myIcons, allIcons, markerIcons, addMyIcon, removeMyIcon }
 })
