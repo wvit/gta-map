@@ -4,7 +4,7 @@
     <Avatar
       class="user-avatar"
       :size="50"
-      src="/src/assets/images/userAvatar.jpeg"
+      src="/images/userAvatar.jpeg"
       @click="showConfigDrawer"
     />
     <ConfigDrawer v-if="baiduMapInitStatus" v-model:visible="configVisible" />

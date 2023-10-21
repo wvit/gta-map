@@ -34,7 +34,7 @@ export const getIconSrc = iconId => {
   const { fileName, base64, type } = iconData
 
   if (type === 'file') {
-    return `/src/assets/gtaIcons/${fileName}.png`
+    return `/gtaIcons/${fileName}.png`
   } else if (type === 'base64') {
     return base64
   }

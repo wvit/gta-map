@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid')
 const { stringify, parse } = require('qs')
 
 /** 获取图标文件路径 */
-const getIconPath = (iconPath = '') => join(__dirname, '../src/assets/gtaIcons', iconPath)
+const getIconPath = (iconPath = '') => join(__dirname, '../public/gtaIcons', iconPath)
 
 /** 重命名icon */
 const iconsRename = () => {
