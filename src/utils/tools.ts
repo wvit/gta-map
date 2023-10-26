@@ -20,10 +20,22 @@ export const getDate = ({ time, full, offsetOption = {} }) => {
 }
 
 /** 获取一个指定长度的数组 */
-export const getArr = length => {
+export const getArr = (length: number) => {
   return Array(length)
     .fill(null)
     .map((_, index) => index)
+}
+
+/** 获取数组中的随机项 */
+export const getArrRandom = (arr: any[], length = 1) => {
+  return getArr(length).map(() => {
+    return arr[Math.ceil(Math.random() * (arr.length - 1))]
+  })
+}
+
+/** 获取一个指定范围的随机数 */
+export const getRandom = (max: number, min = 0) => {
+  return min + Math.ceil(Math.random() * (max - min))
 }
 
 /** 获取图标src */

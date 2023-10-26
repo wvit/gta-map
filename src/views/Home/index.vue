@@ -5,7 +5,7 @@
       class="user-avatar"
       :size="50"
       src="/images/userAvatar.jpeg"
-      @click="showConfigDrawer"
+      @click="configVisible = true"
     />
     <ConfigDrawer v-if="baiduMapInitStatus" v-model:visible="configVisible" />
   </div>
@@ -15,19 +15,19 @@
 import { ref, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
-import { storeHandles } from '@/IDB'
 import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
 import { Dom } from '@/utils/dom'
+import { getArrRandom, getRandom } from '@/utils/tools'
+import { useIconsStore } from '@/stores/icons'
 import ConfigDrawer from './ConfigDrawer.vue'
 
+const iconsStore = useIconsStore()
+
 /** 配置栏显隐 */
-const configVisible = ref(true)
+const configVisible = ref(false)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
-
-/** 打开侧边配置栏 */
-const showConfigDrawer = () => (configVisible.value = true)
 
 /** 初始化地图配置 */
 const initMap = async () => {
@@ -39,13 +39,14 @@ const initMap = async () => {
   return new Promise<void>(resolve => {
     baiduMapScript.onload = () => {
       setTimeout(() => {
-        const { BMapGL, BMAP_ANCHOR_BOTTOM_RIGHT } = window
+        const { BMapGL, BMAP_ANCHOR_BOTTOM_LEFT } = window
         const mapInstance = new BMapGL.Map('map-container')
         const scaleCtrl = new BMapGL.ScaleControl({
-          anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+          anchor: BMAP_ANCHOR_BOTTOM_LEFT,
           offset: { width: 20, height: 20 },
         })
         const zoomCtrl = new BMapGL.ZoomControl({
+          anchor: BMAP_ANCHOR_BOTTOM_LEFT,
           offset: { width: 20, height: 60 },
         })
 
@@ -56,7 +57,7 @@ const initMap = async () => {
         mapInstance.enableScrollWheelZoom(true)
         mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
         initPosition()
-        initMarkerIcons()
+        initStoreMarkerIcons()
 
         resolve()
       }, 1000)
@@ -64,34 +65,45 @@ const initMap = async () => {
   })
 }
 
-/** 初始化时从数据库中获取地图标注图标数据，并添加到地图中 */
-const initMarkerIcons = async () => {
-  const { list } = await storeHandles.markerIcons.getAll()
-
-  list.forEach(async item => {
-    const { iconData, lng, lat } = item
-    createMarkerIcon({ point: { lng, lat }, iconData })
-  })
-}
-
 /** 定位当前坐标位置 */
 const initPosition = () => {
   const { BMapGL, mapInstance } = window
-  const geolocation = new BMapGL.Geolocation()
   const currentCity = new BMapGL.LocalCity()
 
   currentCity.get(result => {
     const { center } = result
     mapInstance.panTo(center)
     createPositionFrontSight(center)
+    initRandomMarkerIcons()
   })
-  geolocation.enableSDKLocation()
-  geolocation.getCurrentPosition(e => {
-    const { point } = e || {}
-    if (!point) return
-    mapInstance.panTo(point)
-    createPositionFrontSight(point)
+}
+
+/** 初始化时从数据库中获取地图标注图标数据，并添加到地图中 */
+const initStoreMarkerIcons = async () => {
+  iconsStore.markerIcons.forEach(async item => {
+    const { iconData, lng, lat } = item
+    createMarkerIcon({ point: { lng, lat }, iconData })
   })
+}
+
+/** 创建随机标记图标 */
+const initRandomMarkerIcons = () => {
+  /** 是否已经初始化过应用 */
+  const isAlreadyInit = localStorage.getItem('isAlreadyInit')
+  if (isAlreadyInit) return
+  const { mapInstance } = window
+  const { offsetHeight, offsetWidth } = document.body
+  const randomIcons = getArrRandom(iconsStore.allIcons, 20)
+
+  randomIcons.forEach(item => {
+    const point = mapInstance.pixelToPoint({
+      x: getRandom(offsetWidth * 0.8, offsetWidth * 0.2),
+      y: getRandom(offsetHeight * 0.8, offsetHeight * 0.2),
+    })
+    createMarkerIcon({ point, iconData: item, save: true })
+  })
+
+  localStorage.setItem('isAlreadyInit', 'true')
 }
 
 /** 创建一个定位准星图标至地图 */
