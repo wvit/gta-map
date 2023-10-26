@@ -1,7 +1,9 @@
 import { toRaw } from 'vue'
-import { storeHandles } from '@/IDB'
+import { useIconsStore } from '@/stores/icons'
 import { getIconSrc } from '@/utils/tools'
 import { Dom } from '../dom'
+
+const iconsStore = useIconsStore()
 
 /** 创建一个地图标注图标 */
 export const createMarkerIcon = (options: {
@@ -32,7 +34,7 @@ export const createMarkerIcon = (options: {
 
   if (save) {
     /** 将地图标注图标保存至数据库 */
-    storeHandles.markerIcons.add({
+    iconsStore.addMarkerIcon({
       id,
       lng,
       lat,
@@ -46,7 +48,7 @@ export const createMarkerIcon = (options: {
     /** 调用地图API,移除标注图标 */
     findIcon?.remove()
     /** 将地图标注图标从数据库中移除 */
-    storeHandles.markerIcons.delete(id)
+    iconsStore.removeMarkerIcon(id)
   })
 
   mapInstance.addOverlay(customOverlay)
