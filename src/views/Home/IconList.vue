@@ -81,7 +81,6 @@ const findMyIcon = iconData => {
 }
 
 const loadNextPage = () => {
-  console.log(11111111111)
   allowRenderNum.value += 100
 }
 </script>

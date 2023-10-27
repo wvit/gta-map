@@ -40,7 +40,6 @@ const checkTargetHide = () => {
 
     if (entries[0].intersectionRatio) {
       /** 如果目标还没被隐藏，就再次触发事件，类似于递归 */
-      console.log(22222222)
       emit('hitBottom')
     } else {
       targetVisible.value = false
@@ -52,12 +51,12 @@ const checkTargetHide = () => {
 
 onMounted(() => {
   /** 仅在目标节点存在时，绑定监听一次 */
+  console.log(111111, targetObserver.value, targetInstance.value, targetVisible.value)
   if (targetObserver.value || !targetInstance.value) return
 
   targetObserver.value = new IntersectionObserver(entries => {
     /** 判断目标节点是否已经滚动到可视区，并且目标节点已经被滚动条隐藏过 */
     if (entries[0].isIntersecting && targetVisible.value === false) {
-      console.log(333333)
       emit('hitBottom')
     } else {
       checkTargetHide()
