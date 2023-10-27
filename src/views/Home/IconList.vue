@@ -5,8 +5,7 @@
       width: `calc(100% + ${props.scrollMargin}px)`,
     }"
   >
-    <InfiniteScroll @hitBottom="allowRenderNum += 100">
-      {{ allowRenderNum }}
+    <InfiniteScroll @hitBottom="()=>{allowRenderNum += 100;console.log(1111111111)}">
       <template v-for="(item, index) in props.iconList" :key="index">
         <Popover
           v-if="index < allowRenderNum"
