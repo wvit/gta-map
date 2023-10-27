@@ -31,21 +31,21 @@ const checkTargetHide = () => {
   /** 获取监听目标显示状态，如果目标节点已经被滚动条遮住隐藏过，就不再监听 */
   const isHidden = () => targetVisible.value === false
 
-  console.log(11111)
+  console.log(11111, targetVisible.value)
   if (isHidden()) return
   targetVisibleObserver.value = new IntersectionObserver(entries => {
-    console.log(2222222)
+    console.log(2222222, targetVisible.value)
     if (isHidden()) return
 
     /** 因为children值会多次变化，所以每次触发完需要销毁掉 */
     targetVisibleObserver.value.disconnect?.()
 
-    console.log(3333333)
+    console.log(3333333, targetVisible.value)
     if (entries[0].intersectionRatio) {
       /** 如果目标还没被隐藏，就再次触发事件，类似于递归 */
       emit('hitBottom')
     } else {
-      console.log(4444444)
+      console.log(4444444, targetVisible.value)
       targetVisible.value = false
     }
   })
