@@ -45,6 +45,7 @@ const checkTargetHide = () => {
       /** 如果目标还没被隐藏，就再次触发事件，类似于递归 */
       emit('hitBottom')
     } else {
+      console.log(4444444)
       targetVisible.value = false
     }
   })
