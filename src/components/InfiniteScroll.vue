@@ -56,6 +56,7 @@ onMounted(() => {
   if (targetObserver.value || !targetInstance.value) return
 
   targetObserver.value = new IntersectionObserver(entries => {
+    console.log(333333, entries[0].isIntersecting, targetVisible.value)
     /** 判断目标节点是否已经滚动到可视区，并且目标节点已经被滚动条隐藏过 */
     if (entries[0].isIntersecting && targetVisible.value === false) {
       emit('hitBottom')
