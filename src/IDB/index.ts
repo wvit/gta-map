@@ -17,9 +17,6 @@ export class Db {
   /** 数据库 */
   dataBase: IDBDatabase = {} as IDBDatabase
 
-  /** 数据 */
-  dbReady = false
-
   /** 当前需要创建的数据表 */
   createStoreData: null | CreateStoreData = null
 
@@ -80,9 +77,6 @@ export class Db {
 
       /** 删除数据表 */
       // this.deleteObjectStore({ storeName: 'poiIcons' })
-
-      /** 设置一个状态，告诉其他地方，数据库已准备就绪 */
-      this.dbReady = true
     }
   }
 

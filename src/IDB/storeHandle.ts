@@ -132,11 +132,12 @@ export class StoreHandle {
   }
 
   /** 检查数据表是否准备完毕 */
-  inspectStoreMounted = async () => {
+  async inspectStoreMounted() {
     return new Promise<void>(resolve => {
       const inspectTimer = setInterval(() => {
-        const { db } = this.props
-        if (!db.dbReady) return
+        const { objectStoreNames } = this.props?.db.dataBase || {}
+        /** 判断数据表是否都已经创建完毕 */
+        if (storeNames.length !== objectStoreNames?.length) return
         clearInterval(inspectTimer)
         resolve()
       }, 5)
@@ -147,8 +148,6 @@ export class StoreHandle {
   async getObjectStore(storeName) {
     await this.inspectStoreMounted()
     const { db } = this.props
-    return db.dataBase
-      .transaction([storeName], 'readwrite')
-      .objectStore(storeName)
+    return db.dataBase.transaction([storeName], 'readwrite').objectStore(storeName)
   }
 }

@@ -5,7 +5,7 @@
       width: `calc(100% + ${props.scrollMargin}px)`,
     }"
   >
-    <InfiniteScroll @hitBottom="loadNextPage">
+    <InfiniteScroll @hitBottom="allowRenderNum += 100">
       <template v-for="(item, index) in props.iconList" :key="index">
         <Popover
           v-if="index < allowRenderNum"
@@ -78,10 +78,6 @@ const iconDragEnd = (e, iconData) => {
 /** 查找图标，是否在“我的图标”中已存在 */
 const findMyIcon = iconData => {
   return !!iconsStore.myIcons.find(item => item.id === iconData.id)
-}
-
-const loadNextPage = () => {
-  allowRenderNum.value += 100
 }
 </script>
 
