@@ -1,9 +1,5 @@
 <template>
   <div class="app-setting">
-    <audio loop class="gta-music" preload="auto" src="/audios/music1.mp3"></audio>
-    <audio loop class="gta-music" preload="auto" src="/audios/music2.mp3"></audio>
-    <audio loop class="gta-music" preload="auto" src="/audios/music3.mp3"></audio>
-
     <Row>
       <Col :span="5">清空所有图标：</Col>
       <Col :span="5">

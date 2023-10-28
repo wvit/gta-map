@@ -1,13 +1,19 @@
 <template>
   <div class="map-home">
-    <div id="map-container" @dragover="e => e.preventDefault()"></div>
+    <audio loop class="gta-music" preload="auto" src="/audios/music1.mp3"></audio>
+    <audio loop class="gta-music" preload="auto" src="/audios/music2.mp3"></audio>
+    <audio loop class="gta-music" preload="auto" src="/audios/music3.mp3"></audio>
+    
+    <ConfigDrawer v-if="baiduMapInitStatus" v-model:visible="configVisible" />
+
     <Avatar
       class="user-avatar"
       :size="50"
       src="/images/userAvatar.jpeg"
       @click="configVisible = true"
     />
-    <ConfigDrawer v-if="baiduMapInitStatus" v-model:visible="configVisible" />
+
+    <div id="map-container" @dragover="e => e.preventDefault()"></div>
 
     <div class="web-info" v-if="baiduMapInitStatus">
       ©️2023 gta-map.online 版权所有
@@ -36,7 +42,7 @@ import ConfigDrawer from './ConfigDrawer.vue'
 const iconsStore = useIconsStore()
 
 /** 配置栏显隐 */
-const configVisible = ref(true)
+const configVisible = ref(false)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
