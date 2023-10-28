@@ -7,7 +7,7 @@
     :mask="false"
     @close="$emit('update:visible', false)"
   >
-    <Tabs defaultActiveKey="1">
+    <Tabs defaultActiveKey="4">
       <Tabs.TabPane key="1" tab="已使用图标">
         <IconList :iconList="iconsStore.markerIcons.map(item => item.iconData)" />
       </Tabs.TabPane>
@@ -17,6 +17,10 @@
       <Tabs.TabPane key="3" tab="全部图标">
         <IconList :iconList="iconsStore.allIcons" />
       </Tabs.TabPane>
+      <Tabs.TabPane key="4" tab="应用设置">
+        <AppSetting />
+      </Tabs.TabPane>
+      <Tabs.TabPane key="5" tab="帮助"> </Tabs.TabPane>
     </Tabs>
   </Drawer>
 </template>
@@ -25,6 +29,7 @@
 import { Drawer, Tabs } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import IconList from './IconList.vue'
+import AppSetting from './AppSetting.vue'
 
 const props = defineProps({
   /** 配置抽屉显隐 */
