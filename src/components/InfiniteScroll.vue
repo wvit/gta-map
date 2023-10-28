@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted, onMounted } from 'vue'
+import { ref, onUnmounted, onMounted, onUpdated } from 'vue'
 import type { CSSProperties } from 'vue'
 
 const emit = defineEmits(['hitBottom'])
@@ -21,9 +21,16 @@ const props = withDefaults(
   {}
 )
 
+/** 检查滚动触底的节点实例 */
 const targetInstance = ref()
+
+/** 判断列表容器的是否触底的观察器 */
 const targetObserver = ref()
+
+/** 检查<targetInstance>节点是否已经已经被隐藏的观察器 */
 const targetVisibleObserver = ref()
+
+/** 标记<targetInstance>节点是否已经被隐藏过 */
 const targetVisible = ref(true)
 
 /** 检查节点是否已经被隐藏 */
@@ -35,8 +42,8 @@ const checkTargetHide = () => {
   targetVisibleObserver.value = new IntersectionObserver(entries => {
     if (isHidden()) return
 
-    /** 因为children值会多次变化，所以每次触发完需要销毁掉 */
-    targetVisibleObserver.value.disconnect?.()
+    /** 这个观察器会被多次实例化，所以每次触发完需要销毁掉 */
+    targetVisibleObserver.value?.disconnect?.()
 
     if (entries[0].intersectionRatio) {
       /** 如果目标还没被隐藏，就再次触发事件，类似于递归 */
@@ -64,6 +71,8 @@ onMounted(() => {
 
   targetObserver.value.observe(targetInstance.value)
 })
+
+onUpdated(checkTargetHide)
 
 onUnmounted(() => {
   targetObserver.value?.disconnect?.()
