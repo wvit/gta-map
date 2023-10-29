@@ -7,6 +7,7 @@
           title="此操作将删除地图中所有图标，是否继续？"
           ok-text="确认"
           cancel-text="算了"
+          @confirm="iconsStore.clearMarkerIcon"
         >
           <Button type="primary" size="small">清空</Button>
         </Popconfirm>
@@ -104,10 +105,12 @@ import { storeToRefs } from 'pinia'
 import { Row, Col, Button, Popconfirm, Select, Switch } from 'ant-design-vue'
 import { resetPosition } from '@/utils/business/resetPosition'
 import { useAppSetting } from '@/stores/appSetting'
+import { useIcons } from '@/stores/icons'
 import { Dom } from '@/utils/dom'
 
 const { mapInstance } = window
 const { settingConfig } = storeToRefs(useAppSetting())
+const iconsStore = useIcons()
 
 /** 播放音乐 */
 const playMusic = () => {

@@ -25,6 +25,7 @@ export class StoreHandle {
       handles[key] = {
         add: data => this.createData(key, data),
         delete: id => this.deleteData(key, id),
+        clear: () => this.deleteData(key),
         getPage: query => this.getPageData(key, { query }),
         getAll: () => this.getStoreAllData(key),
       }
@@ -58,9 +59,9 @@ export class StoreHandle {
   }
 
   /** 删除数据表中的数据 */
-  async deleteData(storeName, id) {
+  async deleteData(storeName, id?) {
     const store: IDBObjectStore = await this.getObjectStore(storeName)
-    await store.delete(id)
+    await (id ? store.delete(id) : store.clear())
     return true
   }
 

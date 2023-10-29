@@ -17,12 +17,14 @@ export namespace StoreHandles {
     {
       /** 添加数据方法 */
       add: (data) => Promise<boolean>
+      /** 批量删除数据 */
+      delete: (id: string) => Promise<boolean>
+      /** 删除所有数据 */
+      clear: () => Promise<boolean>
       /** 获取查询条件的分页数据 */
       getPage: (query) => Promise<PagingValue>
       /** 获取查询条件的所有数据 */
-      getAll: (query?) => Promise<StoreAllValue>
-      /** 批量删除数据 */
-      delete: (id: string) => Promise<boolean>
+      getAll: () => Promise<StoreAllValue>
     }
   >
 }
