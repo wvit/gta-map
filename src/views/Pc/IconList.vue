@@ -39,7 +39,7 @@ import { ref, getCurrentInstance } from 'vue'
 import { Popover } from 'ant-design-vue'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { useIconsStore } from '@/stores/icons'
-import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
+import { createMarkerIcon } from '@/utils/business/markerIcon'
 import { getIconSrc } from '@/utils/file'
 
 const props = withDefaults(

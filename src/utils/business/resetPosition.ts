@@ -48,13 +48,13 @@ export const resetPosition = async (point?) => {
     {
       point: center,
       map: mapInstance,
-      properties: { type: 'front-sight' },
+      properties: { type: 'frontSight' },
     }
   )
 
   /** 移除已经添加的准星覆盖物 */
   mapInstance.getOverlays().forEach(item => {
-    if (item?.properties?.type === 'front-sight') item.remove()
+    if (item?.properties?.type === 'frontSight') item.remove()
   })
   /** 将坐标位置移动至屏幕中心 */
   mapInstance.panTo(center)

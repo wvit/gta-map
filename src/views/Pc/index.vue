@@ -33,7 +33,7 @@
 import { ref, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
-import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
+import { createMarkerIcon } from '@/utils/business/markerIcon'
 import { resetPosition } from '@/utils/business/resetPosition'
 import { Dom } from '@/utils/dom'
 import { getArrRandom, getRandom } from '@/utils/tools'

@@ -53,7 +53,7 @@ export const useIconsStore = defineStore('icons', () => {
     initMyIcons()
   }
 
-  /** 删除地图标记Icon */
+  /** 删除地图标记icon */
   const removeMarkerIcon = async id => {
     await storeHandles.markerIcons.delete(id)
     initMyIcons()

@@ -29,7 +29,7 @@ export const createMarkerIcon = (options: {
   const customOverlay = new BMapGL.CustomOverlay(() => markerIcon, {
     point,
     map: mapInstance,
-    properties: { id },
+    properties: { id, type: 'markerIcon' },
   })
 
   if (save) {
@@ -43,15 +43,28 @@ export const createMarkerIcon = (options: {
   }
 
   markerIcon.addEventListener('dblclick', e => {
-    const findIcon = mapInstance.getOverlays().find(item => item.properties.id === id)
     e.stopPropagation()
-    /** 调用地图API,移除标注图标 */
-    findIcon?.remove()
-    /** 将地图标注图标从数据库中移除 */
+    removeMarkerIcon(id)
     iconsStore.removeMarkerIcon(id)
   })
 
   mapInstance.addOverlay(customOverlay)
   /** 地图缩放拖动后，添加的图标覆盖物会发生一个偏移，需要重新绘制刷新一下 */
   customOverlay.draw()
+}
+
+/** 删除地图标记图标 */
+export const removeMarkerIcon = (id?) => {
+  const { mapInstance } = window
+
+  mapInstance.getOverlays().some(item => {
+    const { id: currentId, type } = item.properties
+    if (type !== 'markerIcon') return
+    if (!id) {
+      item.remove()
+    } else if (currentId === id) {
+      item.remove()
+      return true
+    }
+  })
 }
