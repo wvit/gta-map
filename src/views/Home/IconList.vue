@@ -40,7 +40,7 @@ import { Popover } from 'ant-design-vue'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { useIcons } from '@/stores/icons'
 import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
-import { getIconSrc } from '@/utils/tools'
+import { getIconSrc } from '@/utils/file'
 
 const props = withDefaults(
   defineProps<{
@@ -61,8 +61,8 @@ const props = withDefaults(
   }
 )
 
-const { onSelectIcon } = getCurrentInstance()?.vnode.props || {}
 const { mapInstance } = window
+const { onSelectIcon } = getCurrentInstance()?.vnode.props || {}
 const iconsStore = useIcons()
 
 /** 当前允许渲染icon的数量 */

@@ -1,6 +1,6 @@
 import { toRaw } from 'vue'
 import { useIcons } from '@/stores/icons'
-import { getIconSrc } from '@/utils/tools'
+import { getIconSrc } from '@/utils/file'
 import { Dom } from '../dom'
 
 const iconsStore = useIcons()

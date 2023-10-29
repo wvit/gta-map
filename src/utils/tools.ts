@@ -1,5 +1,3 @@
-import { useIcons } from '@/stores/icons'
-
 /** 传入一个时间戳，返回一个日期字符串 */
 export const getDate = ({ time, full, offsetOption = {} }) => {
   /** 生成一个日期对象 */
@@ -36,18 +34,4 @@ export const getArrRandom = (arr: any[], length = 1) => {
 /** 获取一个指定范围的随机数 */
 export const getRandom = (max: number, min = 0) => {
   return min + Math.ceil(Math.random() * (max - min))
-}
-
-/** 获取图标src */
-export const getIconSrc = iconId => {
-  const iconsStore = useIcons()
-  const findIcon = key => iconsStore[key].find(item => item.id === iconId)
-  const iconData = findIcon('allIcons') || findIcon('myIcons')
-  const { fileName, base64, type } = iconData
-
-  if (type === 'file') {
-    return `/gtaIcons/${fileName}.png`
-  } else if (type === 'base64') {
-    return base64
-  }
 }
