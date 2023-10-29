@@ -16,7 +16,7 @@ type IconData = {
 }
 
 /** <图标>全局数据store */
-export const useIcons = defineStore('icons', () => {
+export const useIconsStore = defineStore('icons', () => {
   /** 我的图标 */
   const myIcons = ref<IconData[]>([])
   /** 全部图标 */

@@ -104,13 +104,13 @@ import { onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { Row, Col, Button, Popconfirm, Select, Switch } from 'ant-design-vue'
 import { resetPosition } from '@/utils/business/resetPosition'
-import { useAppSetting } from '@/stores/appSetting'
-import { useIcons } from '@/stores/icons'
+import { useAppSettingStore } from '@/stores/appSetting'
+import { useIconsStore } from '@/stores/icons'
 import { Dom } from '@/utils/dom'
 
 const { mapInstance } = window
-const { settingConfig } = storeToRefs(useAppSetting())
-const iconsStore = useIcons()
+const { settingConfig } = storeToRefs(useAppSettingStore())
+const iconsStore = useIconsStore()
 
 /** 播放音乐 */
 const playMusic = () => {

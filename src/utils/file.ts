@@ -1,6 +1,6 @@
-import { useIcons } from '@/stores/icons'
+import { useIconsStore } from '@/stores/icons'
 
-const iconsStore = useIcons()
+const iconsStore = useIconsStore()
 
 /** 将文件转为base64 */
 export const getBase64 = (file): Promise<string> => {

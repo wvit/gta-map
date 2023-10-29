@@ -37,10 +37,10 @@ import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
 import { resetPosition } from '@/utils/business/resetPosition'
 import { Dom } from '@/utils/dom'
 import { getArrRandom, getRandom } from '@/utils/tools'
-import { useIcons } from '@/stores/icons'
+import { useIconsStore } from '@/stores/icons'
 import ConfigDrawer from './ConfigDrawer.vue'
 
-const iconsStore = useIcons()
+const iconsStore = useIconsStore()
 
 /** 配置栏显隐 */
 const configVisible = ref(true)

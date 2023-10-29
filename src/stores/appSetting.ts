@@ -2,7 +2,7 @@ import { ref, watch, toRaw } from 'vue'
 import { defineStore } from 'pinia'
 
 /** 应用配置数据store */
-export const useAppSetting = defineStore('appSetting', () => {
+export const useAppSettingStore = defineStore('appSetting', () => {
   const localConfig = JSON.parse(localStorage.getItem('settingConfig')!)
   const defaultConfig = {
     randomIcon: {
