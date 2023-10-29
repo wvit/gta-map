@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { Drawer, Tabs } from 'ant-design-vue'
-import { useIconsStore } from '@/stores/icons'
+import { useIcons } from '@/stores/icons'
 import IconList from './IconList.vue'
 import AppSetting from './AppSetting.vue'
 
@@ -38,7 +38,7 @@ const props = defineProps({
   },
 })
 
-const iconsStore = useIconsStore()
+const iconsStore = useIcons()
 </script>
 
 <style lang="less">

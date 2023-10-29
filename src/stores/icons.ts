@@ -4,7 +4,7 @@ import { message } from 'ant-design-vue'
 import { storeHandles } from '@/IDB'
 import iconsConfig from '@/config/icons.json'
 
-export type IconData = {
+type IconData = {
   /** 图标唯一id */
   id: string
   /** 图标资源类型 */
@@ -16,7 +16,7 @@ export type IconData = {
 }
 
 /** <图标>全局数据store */
-export const useIconsStore = defineStore('icons', () => {
+export const useIcons = defineStore('icons', () => {
   /** 我的图标 */
   const myIcons = ref<IconData[]>([])
   /** 全部图标 */

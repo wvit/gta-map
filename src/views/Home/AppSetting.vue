@@ -12,6 +12,7 @@
         </Popconfirm>
       </Col>
     </Row>
+
     <Row>
       <Col :span="5">刷新图标位置：</Col>
       <Col :span="5">
@@ -24,6 +25,7 @@
         </Popconfirm>
       </Col>
     </Row>
+
     <Row>
       <Col :span="14"
         >从
@@ -57,6 +59,7 @@
         </Popconfirm>
       </Col>
     </Row>
+
     <Row>
       <Col :span="9"
         >开启背景音乐
@@ -80,25 +83,31 @@
         />
       </Col>
     </Row>
+
+    <Row>
+      <Col :span="8">拖入或双击重置定位坐标点： </Col>
+      <Col :span="5"
+        ><img
+          class="reset-positon-icon"
+          src="/images/position.png"
+          @dragend="setPosition"
+          @dblclick="setPosition()"
+        />
+      </Col>
+    </Row>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import { Row, Col, Button, Popconfirm, Select, Switch } from 'ant-design-vue'
+import { resetPosition } from '@/utils/business/resetPosition'
+import { useAppSetting } from '@/stores/appSetting'
 import { Dom } from '@/utils/dom'
 
-/** 应用配置数据 */
-const settingConfig = ref({
-  randomIcon: {
-    from: 'all',
-    count: 20,
-  },
-  music: {
-    selectIndex: 0,
-    open: false,
-  },
-})
+const { mapInstance } = window
+const { settingConfig } = storeToRefs(useAppSetting())
 
 /** 播放音乐 */
 const playMusic = () => {
@@ -109,8 +118,21 @@ const playMusic = () => {
   })
 }
 
-document.addEventListener('mousedown', () => {
-  playMusic()
+/** 重置定位坐标 */
+const setPosition = (e?) => {
+  const { x, y } = e || {}
+  const point = e ? mapInstance.pixelToPoint({ x, y: y - 8 }) : null
+
+  resetPosition(point)
+  settingConfig.value.position = point
+}
+
+onMounted(() => {
+  document.addEventListener('mousedown', playMusic)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('mousedown', playMusic)
 })
 </script>
 
@@ -124,8 +146,14 @@ document.addEventListener('mousedown', () => {
 
     .ant-select,
     .ant-btn,
-    .ant-switch {
+    .ant-switch,
+    .reset-positon-icon {
       margin: 0 8px;
+    }
+
+    .reset-positon-icon {
+      width: 32px;
+      cursor: grab;
     }
   }
 }

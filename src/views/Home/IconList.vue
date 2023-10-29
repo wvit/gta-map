@@ -38,7 +38,7 @@
 import { ref, getCurrentInstance } from 'vue'
 import { Popover } from 'ant-design-vue'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
-import { useIconsStore } from '@/stores/icons'
+import { useIcons } from '@/stores/icons'
 import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
 import { getIconSrc } from '@/utils/tools'
 
@@ -63,7 +63,7 @@ const props = withDefaults(
 
 const { onSelectIcon } = getCurrentInstance()?.vnode.props || {}
 const { mapInstance } = window
-const iconsStore = useIconsStore()
+const iconsStore = useIcons()
 
 /** 当前允许渲染icon的数量 */
 const allowRenderNum = ref(0)
@@ -107,7 +107,7 @@ const findMyIcon = iconData => {
     padding: 4px;
     border-radius: 2px;
     box-sizing: border-box;
-    cursor: pointer;
+    cursor: grab;
 
     &:hover {
       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);

@@ -1,9 +1,9 @@
 import { toRaw } from 'vue'
-import { useIconsStore } from '@/stores/icons'
+import { useIcons } from '@/stores/icons'
 import { getIconSrc } from '@/utils/tools'
 import { Dom } from '../dom'
 
-const iconsStore = useIconsStore()
+const iconsStore = useIcons()
 
 /** 创建一个地图标注图标 */
 export const createMarkerIcon = (options: {

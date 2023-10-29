@@ -1,4 +1,4 @@
-import { useIconsStore } from '@/stores/icons'
+import { useIcons } from '@/stores/icons'
 
 /** 传入一个时间戳，返回一个日期字符串 */
 export const getDate = ({ time, full, offsetOption = {} }) => {
@@ -40,7 +40,7 @@ export const getRandom = (max: number, min = 0) => {
 
 /** 获取图标src */
 export const getIconSrc = iconId => {
-  const iconsStore = useIconsStore()
+  const iconsStore = useIcons()
   const findIcon = key => iconsStore[key].find(item => item.id === iconId)
   const iconData = findIcon('allIcons') || findIcon('myIcons')
   const { fileName, base64, type } = iconData

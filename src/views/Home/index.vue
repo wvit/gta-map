@@ -3,7 +3,7 @@
     <audio loop class="gta-music" preload="auto" src="/audios/music1.mp3"></audio>
     <audio loop class="gta-music" preload="auto" src="/audios/music2.mp3"></audio>
     <audio loop class="gta-music" preload="auto" src="/audios/music3.mp3"></audio>
-    
+
     <ConfigDrawer v-if="baiduMapInitStatus" v-model:visible="configVisible" />
 
     <Avatar
@@ -22,7 +22,7 @@
         target="_blank"
         href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32059002004416"
       >
-        <img src="/images/police_icon.png" />
+        <img src="/images/police.png" />
         苏公网安备 32059002004416号
       </a>
     </div>
@@ -34,15 +34,16 @@ import { ref, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
 import { createMarkerIcon } from '@/utils/business/createMarkerIcon'
+import { resetPosition } from '@/utils/business/resetPosition'
 import { Dom } from '@/utils/dom'
 import { getArrRandom, getRandom } from '@/utils/tools'
-import { useIconsStore } from '@/stores/icons'
+import { useIcons } from '@/stores/icons'
 import ConfigDrawer from './ConfigDrawer.vue'
 
-const iconsStore = useIconsStore()
+const iconsStore = useIcons()
 
 /** 配置栏显隐 */
-const configVisible = ref(false)
+const configVisible = ref(true)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
@@ -56,7 +57,7 @@ const initMap = async () => {
 
   return new Promise<void>(resolve => {
     baiduMapScript.onload = () => {
-      setTimeout(() => {
+      setTimeout(async () => {
         const { BMapGL, BMAP_ANCHOR_BOTTOM_LEFT } = window
         const mapInstance = new BMapGL.Map('map-container')
         const scaleCtrl = new BMapGL.ScaleControl({
@@ -74,25 +75,13 @@ const initMap = async () => {
         mapInstance.addControl(zoomCtrl)
         mapInstance.enableScrollWheelZoom(true)
         mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
-        initPosition()
+        await resetPosition()
+        initRandomMarkerIcons()
         initStoreMarkerIcons()
 
         resolve()
       }, 1000)
     }
-  })
-}
-
-/** 定位当前坐标位置 */
-const initPosition = () => {
-  const { BMapGL, mapInstance } = window
-  const currentCity = new BMapGL.LocalCity()
-
-  currentCity.get(result => {
-    const { center } = result
-    mapInstance.panTo(center)
-    createPositionFrontSight(center)
-    initRandomMarkerIcons()
   })
 }
 
@@ -122,59 +111,6 @@ const initRandomMarkerIcons = () => {
   })
 
   localStorage.setItem('isAlreadyInit', 'true')
-}
-
-/** 创建一个定位准星图标至地图 */
-const createPositionFrontSight = point => {
-  const { BMapGL, mapInstance } = window
-  const customOverlay = new BMapGL.CustomOverlay(
-    () => {
-      const width = 3
-      const commomStyle = {
-        width: `${width}px`,
-        height: '100px',
-        backgroundImage:
-          'linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))',
-        transformOrigin: 'bottom center',
-      }
-      const frontSight = Dom.create('div').setStyle({ display: 'flex' })
-      const frontSightTop = Dom.create('span').setStyle({
-        ...commomStyle,
-        transform: 'translate(0, -10px)',
-      })
-      const frontSightRight = Dom.create('span').setStyle({
-        ...commomStyle,
-        transform: `translate(${10 - 1 * width}px) rotate(90deg)`,
-      })
-      const frontSightBottom = Dom.create('span').setStyle({
-        ...commomStyle,
-        transform: `translate(${-2 * width}px, 10px) rotate(180deg)`,
-      })
-      const frontSightLeft = Dom.create('span').setStyle({
-        ...commomStyle,
-        transform: `translate(${-10 - 3 * width}px) rotate(270deg)`,
-      })
-
-      return frontSight
-        .add(frontSightTop)
-        .add(frontSightRight)
-        .add(frontSightBottom)
-        .add(frontSightLeft)
-    },
-    {
-      point,
-      map: mapInstance,
-      properties: { type: 'front-sight' },
-    }
-  )
-
-  /** 移除已经添加的准星覆盖物 */
-  mapInstance.getOverlays().forEach(item => {
-    if (item?.properties?.type === 'front-sight') item.remove()
-  })
-
-  /** 将新的准星覆盖物添加进地图 */
-  mapInstance.addOverlay(customOverlay)
 }
 
 onMounted(async () => {
