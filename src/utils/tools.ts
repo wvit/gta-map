@@ -26,6 +26,7 @@ export const getArr = (length: number) => {
 
 /** 获取数组中的随机项 */
 export const getArrRandom = (arr: any[], length = 1) => {
+  if (!arr?.length) return []
   return getArr(length).map(() => {
     return arr[Math.ceil(Math.random() * (arr.length - 1))]
   })

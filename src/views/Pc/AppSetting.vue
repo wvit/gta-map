@@ -15,14 +15,15 @@
     </Row>
 
     <Row>
-      <Col :span="5">刷新图标位置：</Col>
+      <Col :span="6">重置所有图标位置：</Col>
       <Col :span="5">
         <Popconfirm
-          title="此操作将刷新地图中所有图标的位置，是否继续？"
+          title="此操作将重置地图中所有图标的位置，是否继续？"
           ok-text="确认"
           cancel-text="算了"
+          @confirm="resetMarkerIconPoint"
         >
-          <Button type="primary" size="small">刷新</Button>
+          <Button type="primary" size="small">重置</Button>
         </Popconfirm>
       </Col>
     </Row>
@@ -34,8 +35,8 @@
           size="small"
           v-model:value="settingConfig.randomIcon.from"
           :options="[
-            { label: '我的图标', value: 'my' },
-            { label: '全部图标', value: 'all' },
+            { label: '我的图标', value: 'myIcons' },
+            { label: '全部图标', value: 'allIcons' },
           ]"
         />
         中，随机添加
@@ -55,6 +56,7 @@
           title="此操作将在地图中追加多个图标，是否继续？"
           ok-text="确认"
           cancel-text="算了"
+          @confirm="addMarkerIcon"
         >
           <Button type="primary" size="small">添加</Button>
         </Popconfirm>
@@ -102,9 +104,13 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { Row, Col, Button, Popconfirm, Select, Switch } from 'ant-design-vue'
+import { Row, Col, Button, Popconfirm, Select, Switch, message } from 'ant-design-vue'
 import { resetPosition } from '@/utils/business/resetPosition'
-import { removeMarkerIcon } from '@/utils/business/markerIcon'
+import {
+  removeMarkerIcon,
+  addRandomMarkerIcon,
+  resetMarkerIconPoint,
+} from '@/utils/business/markerIcon'
 import { useAppSettingStore } from '@/stores/appSetting'
 import { useIconsStore } from '@/stores/icons'
 import { Dom } from '@/utils/dom'
@@ -124,8 +130,15 @@ const playMusic = () => {
 
 /** 清空地图中所有标记图标 */
 const clearMarkerIcon = () => {
-  iconsStore.clearMarkerIcon()
   removeMarkerIcon()
+  message.success('已清空地图中所有图标')
+}
+
+/** 添加随机icon */
+const addMarkerIcon = () => {
+  const { from, count } = settingConfig.value.randomIcon
+  addRandomMarkerIcon(iconsStore[from], count)
+  message.success(`已向地图中添加${count}个图标`)
 }
 
 /** 重置定位坐标 */

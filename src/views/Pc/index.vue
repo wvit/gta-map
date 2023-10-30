@@ -33,17 +33,16 @@
 import { ref, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
-import { createMarkerIcon } from '@/utils/business/markerIcon'
+import { createMarkerIcon, addRandomMarkerIcon } from '@/utils/business/markerIcon'
 import { resetPosition } from '@/utils/business/resetPosition'
 import { Dom } from '@/utils/dom'
-import { getArrRandom, getRandom } from '@/utils/tools'
 import { useIconsStore } from '@/stores/icons'
 import ConfigDrawer from './ConfigDrawer.vue'
 
 const iconsStore = useIconsStore()
 
 /** 配置栏显隐 */
-const configVisible = ref(true)
+const configVisible = ref(false)
 
 /** 百度地图初始化状态 */
 const baiduMapInitStatus = ref(false)
@@ -76,7 +75,6 @@ const initMap = async () => {
         mapInstance.enableScrollWheelZoom(true)
         mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
         await resetPosition()
-        initRandomMarkerIcons()
         initStoreMarkerIcons()
 
         resolve()
@@ -87,30 +85,15 @@ const initMap = async () => {
 
 /** 初始化时从数据库中获取地图标注图标数据，并添加到地图中 */
 const initStoreMarkerIcons = async () => {
-  iconsStore.markerIcons.forEach(async item => {
-    const { iconData, lng, lat } = item
-    createMarkerIcon({ point: { lng, lat }, iconData })
-  })
-}
+  const { markerIcons, allIcons } = iconsStore
 
-/** 创建随机标记图标 */
-const initRandomMarkerIcons = () => {
-  /** 是否已经初始化过应用 */
-  const isAlreadyInit = localStorage.getItem('isAlreadyInit')
-  if (isAlreadyInit) return
-  const { mapInstance } = window
-  const { offsetHeight, offsetWidth } = document.body
-  const randomIcons = getArrRandom(iconsStore.allIcons, 20)
-
-  randomIcons.forEach(item => {
-    const point = mapInstance.pixelToPoint({
-      x: getRandom(offsetWidth * 0.8, offsetWidth * 0.2),
-      y: getRandom(offsetHeight * 0.8, offsetHeight * 0.2),
+  if (markerIcons.length) {
+    markerIcons.forEach(async item => {
+      createMarkerIcon(item as any)
     })
-    createMarkerIcon({ point, iconData: item, save: true })
-  })
-
-  localStorage.setItem('isAlreadyInit', 'true')
+  } else {
+    addRandomMarkerIcon(allIcons, 20)
+  }
 }
 
 onMounted(async () => {

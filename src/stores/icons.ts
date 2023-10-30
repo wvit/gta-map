@@ -40,15 +40,21 @@ export const useIconsStore = defineStore('icons', () => {
     initMyIcons()
   }
 
-  /** 添加地图标记icon */
+  /** 添加地图图标 */
   const addMarkerIcon = async markerData => {
     await storeHandles.markerIcons.add(markerData)
     initMyIcons()
   }
 
+  /** 修改地图图标数据 */
+  const editMarkerIcon = async markerData => {
+    await storeHandles.markerIcons.edit(markerData)
+    initMyIcons()
+  }
+
   /** 将icon从"我的图标“中移除 */
-  const removeMyIcon = async iconData => {
-    await storeHandles.myIcons.delete(iconData.id)
+  const removeMyIcon = async id => {
+    await storeHandles.myIcons.delete(id)
     message.success('已从“我的图标”中移除')
     initMyIcons()
   }
@@ -56,12 +62,6 @@ export const useIconsStore = defineStore('icons', () => {
   /** 删除地图标记icon */
   const removeMarkerIcon = async id => {
     await storeHandles.markerIcons.delete(id)
-    initMyIcons()
-  }
-
-  /** 清空所有地图标记icon */
-  const clearMarkerIcon = async () => {
-    await storeHandles.markerIcons.clear()
     initMyIcons()
   }
 
@@ -75,6 +75,6 @@ export const useIconsStore = defineStore('icons', () => {
     addMarkerIcon,
     removeMyIcon,
     removeMarkerIcon,
-    clearMarkerIcon,
+    editMarkerIcon,
   }
 })

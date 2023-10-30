@@ -26,6 +26,7 @@ export class StoreHandle {
         add: data => this.createData(key, data),
         delete: id => this.deleteData(key, id),
         clear: () => this.deleteData(key),
+        edit: data => this.createData(key, data),
         getPage: query => this.getPageData(key, { query }),
         getAll: () => this.getStoreAllData(key),
       }
@@ -34,7 +35,7 @@ export class StoreHandle {
     return handles
   }
 
-  /** 向数据表新增数据 */
+  /** 向数据表新增数据，如果数据id存在，就更改数据 */
   async createData(storeName, data) {
     const store = await this.getObjectStore(storeName)
     const addData = Array.isArray(data) ? data.pop() : data

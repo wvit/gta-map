@@ -7,7 +7,7 @@
     :mask="false"
     @close="$emit('update:visible', false)"
   >
-    <Tabs defaultActiveKey="4">
+    <Tabs defaultActiveKey="1">
       <Tabs.TabPane key="1" tab="已使用图标">
         <IconList :iconList="iconsStore.markerIcons.map(item => item.iconData)" />
       </Tabs.TabPane>

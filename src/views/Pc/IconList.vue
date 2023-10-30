@@ -16,9 +16,10 @@
           <template #content>
             <!-- 如果传入了 onSelectIcon 事件，就不展示 popover 的内容  -->
             <div v-if="!onSelectIcon" class="icon-operation">
-              <span @click="iconsStore[findMyIcon(item) ? 'removeMyIcon' : 'addMyIcon'](item)">
-                {{ findMyIcon(item) ? '从“我的图标”中移除' : '添加至“我的图标”' }}
+              <span v-if="findMyIcon(item)" @click="iconsStore.removeMyIcon(item.id)">
+                从“我的图标”中移除
               </span>
+              <span v-else @click="iconsStore.addMyIcon(item)"> 添加至“我的图标 </span>
             </div>
           </template>
           <div

@@ -11,7 +11,7 @@ export namespace StoreHandles {
   /** 数据表 */
   export type Stores = (typeof storeNames)[number]
 
-  /** 数据库暴露出去的操作方法 */
+  /** 数据库暴露出去的增删改查方法 */
   export type Handles = Record<
     Stores,
     {
@@ -21,6 +21,8 @@ export namespace StoreHandles {
       delete: (id: string) => Promise<boolean>
       /** 删除所有数据 */
       clear: () => Promise<boolean>
+      /** 编辑修改数据 */
+      edit: (data) => Promise<boolean>
       /** 获取查询条件的分页数据 */
       getPage: (query) => Promise<PagingValue>
       /** 获取查询条件的所有数据 */

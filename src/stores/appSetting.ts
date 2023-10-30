@@ -6,7 +6,7 @@ export const useAppSettingStore = defineStore('appSetting', () => {
   const localConfig = JSON.parse(localStorage.getItem('settingConfig')!)
   const defaultConfig = {
     randomIcon: {
-      from: 'all',
+      from: 'allIcons',
       count: 20,
     },
     music: {
