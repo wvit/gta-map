@@ -29,8 +29,8 @@
     </Row>
 
     <Row>
-      <Col :span="14"
-        >从
+      <Col :span="14">
+        从
         <Select
           size="small"
           v-model:value="settingConfig.randomIcon.from"
@@ -49,8 +49,8 @@
             { label: '30', value: 30 },
           ]"
         />
-        个：</Col
-      >
+        个：
+      </Col>
       <Col :span="5">
         <Popconfirm
           title="此操作将在地图中追加多个图标，是否继续？"
@@ -64,8 +64,8 @@
     </Row>
 
     <Row>
-      <Col :span="9"
-        >开启背景音乐
+      <Col :span="9">
+        开启背景音乐
         <Select
           size="small"
           v-model:value="settingConfig.music.selectIndex"
@@ -88,7 +88,7 @@
     </Row>
 
     <Row>
-      <Col :span="8">拖入或双击重置定位坐标点： </Col>
+      <Col :span="8">拖入或双击重置定位坐标点：</Col>
       <Col :span="5"
         ><img
           class="reset-positon-icon"
@@ -98,13 +98,59 @@
         />
       </Col>
     </Row>
+
+    <Row>
+      <Col :span="8">
+        导出地图配置便于分享
+        <Popover>
+          <template #content>
+            地图中如果大于 50 个图标，建议“导出为文件”，<br />
+            因为社交平台一般不允许发送太长的消息。
+          </template>
+          <i class="export-hint-icon">?</i> </Popover
+        >：
+      </Col>
+      <Col :span="10">
+        <Button size="small">导出至剪切板</Button>
+        <Button size="small">导出配置文件</Button>
+      </Col>
+    </Row>
+
+    <Row>
+      <Col :span="5">导入地图配置： </Col>
+      <Col :span="10">
+        <Popconfirm
+          overlayClassName="import-config-popover"
+          ok-text="确认"
+          cancel-text="算了"
+          @confirm="clearMarkerIcon"
+        >
+          <template #title>
+            <p>将配置内容粘贴进输入框</p>
+            <Textarea allowClear resize="none" :rows="5" :style="{ width: '500px' }" />
+          </template>
+          <Button size="small">从剪切板导入</Button>
+        </Popconfirm>
+        <Button size="small">导入配置文件</Button>
+      </Col>
+    </Row>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { Row, Col, Button, Popconfirm, Select, Switch, message } from 'ant-design-vue'
+import {
+  Row,
+  Col,
+  Button,
+  Popconfirm,
+  Select,
+  Switch,
+  Popover,
+  Textarea,
+  message,
+} from 'ant-design-vue'
 import { resetPosition } from '@/utils/business/resetPosition'
 import {
   removeMarkerIcon,
@@ -178,6 +224,26 @@ onUnmounted(() => {
       width: 32px;
       cursor: grab;
     }
+  }
+
+  .export-hint-icon {
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 1);
+    font-size: 12px;
+    width: 14px;
+    height: 14px;
+    border-radius: 20px;
+    line-height: 12px;
+    text-align: center;
+    opacity: 0.6;
+    margin: 0 8px;
+    cursor: pointer;
+  }
+}
+
+.import-config-popover {
+  .ant-input {
+    resize: none;
   }
 }
 </style>
