@@ -20,7 +20,9 @@
       <Tabs.TabPane key="4" tab="应用设置">
         <AppSetting />
       </Tabs.TabPane>
-      <Tabs.TabPane key="5" tab="帮助"> </Tabs.TabPane>
+      <Tabs.TabPane key="5" tab="帮助 Q/A">
+        <Help />
+      </Tabs.TabPane>
     </Tabs>
   </Drawer>
 </template>
@@ -30,6 +32,7 @@ import { Drawer, Tabs } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import IconList from './IconList.vue'
 import AppSetting from './AppSetting.vue'
+import Help from './Help.vue'
 
 const props = defineProps({
   /** 配置抽屉显隐 */
