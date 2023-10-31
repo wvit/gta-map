@@ -1,5 +1,4 @@
 import { toRaw } from 'vue'
-import { message } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import { getIconSrc } from '@/utils/file'
 import { getRandom, getArrRandom } from '@/utils/tools'
@@ -102,5 +101,4 @@ export const resetMarkerIconPoint = () => {
     item.setPoint(point)
     iconsStore.editMarkerIcon({ id, point })
   })
-  message.success('已重置地图中所有图标的位置')
 }

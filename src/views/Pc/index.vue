@@ -30,11 +30,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
 import { createMarkerIcon, addRandomMarkerIcon } from '@/utils/business/markerIcon'
 import { resetPosition } from '@/utils/business/resetPosition'
+import { playMusic } from '@/utils/business/music'
 import { Dom } from '@/utils/dom'
 import { useIconsStore } from '@/stores/icons'
 import { useAppSettingStore } from '@/stores/appSetting'
@@ -100,7 +101,13 @@ const initStoreMarkerIcons = async () => {
 
 onMounted(async () => {
   await initMap()
+
   baiduMapInitStatus.value = true
+  document.addEventListener('mousedown', playMusic)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('mousedown', playMusic)
 })
 </script>
 

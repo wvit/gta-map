@@ -21,7 +21,12 @@
           title="此操作将重置地图中所有图标的位置，是否继续？"
           ok-text="确认"
           cancel-text="算了"
-          @confirm="resetMarkerIconPoint"
+          @confirm="
+            () => {
+              resetMarkerIconPoint()
+              message.success('已重置地图中所有图标的位置')
+            }
+          "
         >
           <Button type="primary" size="small">重置</Button>
         </Popconfirm>
@@ -151,7 +156,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import {
   Row,
@@ -172,6 +177,7 @@ import {
   removeMarkerIcon,
   resetMarkerIconPoint,
 } from '@/utils/business/markerIcon'
+import { playMusic } from '@/utils/business/music'
 import { Dom } from '@/utils/dom'
 import { useAppSettingStore } from '@/stores/appSetting'
 import { useIconsStore } from '@/stores/icons'
@@ -182,14 +188,6 @@ const { settingConfig } = storeToRefs(useAppSettingStore())
 
 /** 导入配置输入框内容 */
 const importInputValue = ref('')
-
-/** 播放音乐 */
-const playMusic = () => {
-  const { selectIndex, open } = settingConfig.value.music
-  Dom.queryAll('.gta-music').forEach((item, index) => {
-    selectIndex === index && open ? item.play() : item.pause()
-  })
-}
 
 /** 清空地图中所有标记图标 */
 const clearMarkerIcon = () => {
@@ -262,14 +260,6 @@ const importSettingConfig = async (type: 'clipboard' | 'file', e?) => {
     message.error('导入配置失败')
   }
 }
-
-onMounted(() => {
-  document.addEventListener('mousedown', playMusic)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('mousedown', playMusic)
-})
 </script>
 
 <style lang="less">

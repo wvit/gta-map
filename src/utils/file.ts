@@ -8,7 +8,7 @@ export const getBase64 = (file): Promise<string> => {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = () => resolve(reader.result as string)
-    reader.onerror = error => reject(error)
+    reader.onerror = e => reject(e)
   })
 }
 
