@@ -221,7 +221,7 @@ const exportSettingConfig = async (type: 'clipboard' | 'file') => {
   } else if (type === 'file') {
     const blob = new Blob([configData], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
-    Dom.create('a').attr('download', 'gta-map-config.json').attr('href', url).click()
+    Dom.create('a', { download: 'gta-map-config.json', href: url }).click()
     URL.revokeObjectURL(url)
   }
 

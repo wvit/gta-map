@@ -1,10 +1,8 @@
 <template>
-  <div class="map-home">
+  <div class="map-pc-wrap">
     <audio loop class="gta-music" preload="auto" src="/audios/music1.mp3"></audio>
     <audio loop class="gta-music" preload="auto" src="/audios/music2.mp3"></audio>
     <audio loop class="gta-music" preload="auto" src="/audios/music3.mp3"></audio>
-
-    <ConfigDrawer v-if="baiduMapInitStatus" v-model:visible="configVisible" />
 
     <Avatar
       class="user-avatar"
@@ -13,9 +11,9 @@
       @click="configVisible = true"
     />
 
-    <div id="map-container" @dragover="e => e.preventDefault()"></div>
+    <ConfigDrawer v-model:visible="configVisible" />
 
-    <div class="web-info" v-if="baiduMapInitStatus">
+    <div class="web-info">
       ©️2023 gta-map.online 版权所有
       <a target="_blank" href="https://beian.miit.gov.cn">蜀ICP备2023012649号-1</a>
       <a
@@ -32,11 +30,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
-import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
 import { createMarkerIcon, addRandomMarkerIcon } from '@/utils/business/markerIcon'
 import { resetPosition } from '@/utils/business/resetPosition'
 import { playMusic } from '@/utils/business/music'
-import { Dom } from '@/utils/dom'
 import { useIconsStore } from '@/stores/icons'
 import { useAppSettingStore } from '@/stores/appSetting'
 import ConfigDrawer from './ConfigDrawer.vue'
@@ -47,43 +43,22 @@ const appSetting = useAppSettingStore()
 /** 配置栏显隐 */
 const configVisible = ref(false)
 
-/** 百度地图初始化状态 */
-const baiduMapInitStatus = ref(false)
-
-/** 初始化地图配置 */
+/** 初始化地图内容 */
 const initMap = async () => {
-  const baiduMapScript = Dom.query('head').create('script', {
-    class: 'baidu-map-script',
-    src: `https://api.map.baidu.com/api?v=3.0&type=webgl&ak=${baiduMapKey}&callback=initialize`,
+  const { BMapGL, BMAP_ANCHOR_BOTTOM_LEFT, mapInstance } = window
+  const scaleCtrl = new BMapGL.ScaleControl({
+    anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+    offset: { width: 10, height: 40 },
+  })
+  const zoomCtrl = new BMapGL.ZoomControl({
+    anchor: BMAP_ANCHOR_BOTTOM_LEFT,
+    offset: { width: 10, height: 80 },
   })
 
-  return new Promise<void>(resolve => {
-    baiduMapScript.onload = () => {
-      setTimeout(async () => {
-        const { BMapGL, BMAP_ANCHOR_BOTTOM_LEFT } = window
-        const mapInstance = new BMapGL.Map('map-container')
-        const scaleCtrl = new BMapGL.ScaleControl({
-          anchor: BMAP_ANCHOR_BOTTOM_LEFT,
-          offset: { width: 10, height: 40 },
-        })
-        const zoomCtrl = new BMapGL.ZoomControl({
-          anchor: BMAP_ANCHOR_BOTTOM_LEFT,
-          offset: { width: 10, height: 80 },
-        })
-
-        window.mapInstance = mapInstance
-        mapInstance.centerAndZoom(new window.BMapGL.Point(116.404, 39.915), 13)
-        mapInstance.addControl(scaleCtrl)
-        mapInstance.addControl(zoomCtrl)
-        mapInstance.enableScrollWheelZoom(true)
-        mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
-        await resetPosition(appSetting.settingConfig.position)
-        initStoreMarkerIcons()
-
-        resolve()
-      }, 1000)
-    }
-  })
+  mapInstance.addControl(scaleCtrl)
+  mapInstance.addControl(zoomCtrl)
+  await resetPosition(appSetting.settingConfig.position)
+  initStoreMarkerIcons()
 }
 
 /** 初始化时从数据库中获取地图标注图标数据，并添加到地图中 */
@@ -101,8 +76,6 @@ const initStoreMarkerIcons = async () => {
 
 onMounted(async () => {
   await initMap()
-
-  baiduMapInitStatus.value = true
   document.addEventListener('mousedown', playMusic)
 })
 
@@ -112,9 +85,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="less">
-.map-home {
-  position: relative;
-
+.map-pc-wrap {
   .user-avatar {
     cursor: pointer;
     position: absolute;
@@ -142,10 +113,5 @@ onUnmounted(() => {
       color: #59acf9;
     }
   }
-}
-
-#map-container {
-  width: 100vw;
-  height: 100vh;
 }
 </style>
