@@ -37,9 +37,11 @@ import { createMarkerIcon, addRandomMarkerIcon } from '@/utils/business/markerIc
 import { resetPosition } from '@/utils/business/resetPosition'
 import { Dom } from '@/utils/dom'
 import { useIconsStore } from '@/stores/icons'
+import { useAppSettingStore } from '@/stores/appSetting'
 import ConfigDrawer from './ConfigDrawer.vue'
 
 const iconsStore = useIconsStore()
+const appSetting = useAppSettingStore()
 
 /** 配置栏显隐 */
 const configVisible = ref(false)
@@ -74,7 +76,7 @@ const initMap = async () => {
         mapInstance.addControl(zoomCtrl)
         mapInstance.enableScrollWheelZoom(true)
         mapInstance.setMapStyleV2({ styleJson: baiduMapStyle })
-        await resetPosition()
+        await resetPosition(appSetting.settingConfig.position)
         initStoreMarkerIcons()
 
         resolve()

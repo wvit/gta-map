@@ -111,8 +111,8 @@
         >：
       </Col>
       <Col :span="10">
-        <Button size="small">导出至剪切板</Button>
-        <Button size="small">导出配置文件</Button>
+        <Button size="small" @click="exportSettingConfig('clipboard')">导出至剪切板</Button>
+        <Button size="small" @click="exportSettingConfig('file')">导出配置文件</Button>
       </Col>
     </Row>
 
@@ -123,22 +123,35 @@
           overlayClassName="import-config-popover"
           ok-text="确认"
           cancel-text="算了"
-          @confirm="clearMarkerIcon"
+          @confirm="importSettingConfig('clipboard')"
         >
           <template #title>
             <p>将配置内容粘贴进输入框</p>
-            <Textarea allowClear resize="none" :rows="5" :style="{ width: '500px' }" />
+            <Textarea
+              allowClear
+              resize="none"
+              :rows="5"
+              :style="{ width: '500px' }"
+              v-model:value="importInputValue"
+            />
           </template>
           <Button size="small">从剪切板导入</Button>
         </Popconfirm>
-        <Button size="small">导入配置文件</Button>
+        <Upload
+          :customRequest="() => null"
+          accept=".json"
+          :fileList="[]"
+          @change="importSettingConfig('file', $event)"
+        >
+          <Button size="small">导入配置文件</Button>
+        </Upload>
       </Col>
     </Row>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import {
   Row,
@@ -149,26 +162,30 @@ import {
   Switch,
   Popover,
   Textarea,
+  Upload,
   message,
 } from 'ant-design-vue'
 import { resetPosition } from '@/utils/business/resetPosition'
 import {
-  removeMarkerIcon,
+  createMarkerIcon,
   addRandomMarkerIcon,
+  removeMarkerIcon,
   resetMarkerIconPoint,
 } from '@/utils/business/markerIcon'
+import { Dom } from '@/utils/dom'
 import { useAppSettingStore } from '@/stores/appSetting'
 import { useIconsStore } from '@/stores/icons'
-import { Dom } from '@/utils/dom'
 
 const { mapInstance } = window
-const { settingConfig } = storeToRefs(useAppSettingStore())
 const iconsStore = useIconsStore()
+const { settingConfig } = storeToRefs(useAppSettingStore())
+
+/** 导入配置输入框内容 */
+const importInputValue = ref('')
 
 /** 播放音乐 */
 const playMusic = () => {
   const { selectIndex, open } = settingConfig.value.music
-
   Dom.queryAll('.gta-music').forEach((item, index) => {
     selectIndex === index && open ? item.play() : item.pause()
   })
@@ -190,10 +207,60 @@ const addMarkerIcon = () => {
 /** 重置定位坐标 */
 const setPosition = (e?) => {
   const { x, y } = e || {}
-  const point = e ? mapInstance.pixelToPoint({ x, y: y - 8 }) : null
+  const point = mapInstance.pixelToPoint({ x: x + 5, y: y - 25 })
+  resetPosition(e ? point : null)
+}
 
-  resetPosition(point)
-  settingConfig.value.position = point
+/** 导出配置数据 */
+const exportSettingConfig = async (type: 'clipboard' | 'file') => {
+  const configData = JSON.stringify({
+    ...settingConfig.value,
+    markerIconList: iconsStore.markerIcons,
+  })
+
+  if (type === 'clipboard') {
+    await navigator.clipboard.writeText(configData)
+  } else if (type === 'file') {
+    const blob = new Blob([configData], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    Dom.create('a').attr('download', 'gta-map-config.json').attr('href', url).click()
+    URL.revokeObjectURL(url)
+  }
+
+  message.success('导出成功')
+}
+
+/** 导入配置数据 */
+const importSettingConfig = async (type: 'clipboard' | 'file', e?) => {
+  try {
+    const configData = JSON.parse(
+      await new Promise<any>(resolve => {
+        if (type === 'clipboard') {
+          resolve(importInputValue.value)
+        } else if (type === 'file') {
+          const reader = new FileReader()
+          reader.readAsText(e.file.originFileObj)
+          reader.onload = () => resolve(reader.result)
+        }
+      })
+    )
+
+    Object.keys(configData).forEach(key => {
+      const itemData = configData[key]
+      if (['music', 'randomIcon'].includes(key)) {
+        settingConfig.value[key] = itemData
+      } else if (key === 'markerIconList') {
+        itemData.forEach(item => createMarkerIcon({ ...item, save: true }))
+      } else if (key === 'position') {
+        resetPosition(itemData)
+      }
+    })
+
+    message.success('导入配置成功')
+  } catch (e) {
+    console.log('导入配置失败', e)
+    message.error('导入配置失败')
+  }
 }
 
 onMounted(() => {

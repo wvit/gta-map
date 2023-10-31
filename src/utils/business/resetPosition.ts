@@ -1,4 +1,8 @@
+import { storeToRefs } from 'pinia'
+import { useAppSettingStore } from '@/stores/appSetting'
 import { Dom } from '@/utils/dom'
+
+const { settingConfig } = storeToRefs(useAppSettingStore())
 
 /** 重置当前坐标位置 */
 export const resetPosition = async (point?) => {
@@ -60,4 +64,6 @@ export const resetPosition = async (point?) => {
   mapInstance.panTo(center)
   /** 将新的准星覆盖物添加进地图 */
   mapInstance.addOverlay(customOverlay)
+  /** 保存坐标信息 */
+  settingConfig.value.position = center
 }
