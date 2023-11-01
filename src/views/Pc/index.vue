@@ -28,7 +28,7 @@ const iconsStore = useIconsStore()
 const appSetting = useAppSettingStore()
 
 /** 配置栏显隐 */
-const configVisible = ref(false)
+const configVisible = ref(true)
 
 /** 初始化地图内容 */
 const initMap = async () => {

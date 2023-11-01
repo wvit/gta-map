@@ -6,31 +6,31 @@
     }"
   >
     <InfiniteScroll @hitBottom="allowRenderNum += 100">
-      <template v-for="(item, index) in props.iconList" :key="index">
-        <Popover
-          v-if="index < allowRenderNum"
-          overlayClassName="icon-operation-popover"
-          placement="right"
-          trigger="click"
-        >
-          <template #content>
-            <!-- 如果传入了 onSelectIcon 事件，就不展示 popover 的内容  -->
-            <div v-if="!onSelectIcon" class="icon-operation">
-              <span v-if="findMyIcon(item)" @click="iconsStore.removeMyIcon(item.id)">
-                从“我的图标”中移除
-              </span>
-              <span v-else @click="iconsStore.addMyIcon(item)"> 添加至“我的图标 </span>
-            </div>
-          </template>
+      <Drag item-key="id" :sort="false" :modelValue="props.iconList" @end="iconDragEnd">
+        <template #item="{ element: item, index }">
           <div
+            v-if="index < allowRenderNum"
             :class="['icon-item', activeId === item.id ? 'icon-active' : '']"
             :style="{ width: `${props.size}px`, height: `${props.size}px` }"
             @click="$emit('selectIcon', item)"
           >
-            <img draggable :src="getIconSrc(item.id)" @dragend="iconDragEnd($event, item)" />
+            <Popover overlayClassName="icon-operation-popover" placement="right" trigger="click">
+              <template #content>
+                <!-- 如果传入了 onSelectIcon 事件，就不展示 popover 的内容  -->
+                <div v-if="!onSelectIcon" class="icon-operation">
+                  <span v-if="findMyIcon(item)" @click="iconsStore.removeMyIcon(item.id)">
+                    从“我的图标”中移除
+                  </span>
+                  <span v-else @click="iconsStore.addMyIcon(item)"> 添加至“我的图标 </span>
+                </div>
+              </template>
+              <div class="icon-img-wrap">
+                <img :src="getIconSrc(item.id)" />
+              </div>
+            </Popover>
           </div>
-        </Popover>
-      </template>
+        </template>
+      </Drag>
     </InfiniteScroll>
   </div>
 </template>
@@ -38,6 +38,7 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance } from 'vue'
 import { Popover } from 'ant-design-vue'
+import Drag from 'vuedraggable'
 import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { useIconsStore } from '@/stores/icons'
 import { createMarkerIcon } from '@/utils/business/markerIcon'
@@ -70,10 +71,11 @@ const iconsStore = useIconsStore()
 const allowRenderNum = ref(0)
 
 /** 拖拽结束，将icon添加至地图 */
-const iconDragEnd = (e, iconData) => {
-  const { x, y } = e
+const iconDragEnd = e => {
+  const { originalEvent, item } = e
+  const { x, y } = originalEvent
   const point = mapInstance.pixelToPoint({ x, y: y - 8 })
-  createMarkerIcon({ point, iconData, save: true })
+  createMarkerIcon({ point, iconData: item._underlying_vm_, save: true })
 }
 
 /** 查找图标，是否在“我的图标”中已存在 */
@@ -92,12 +94,15 @@ const findMyIcon = iconData => {
 }
 
 .icon-list {
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  user-select: none;
   height: 100%;
   overflow-y: auto;
+
+  & > div {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    user-select: none;
+  }
 
   .ant-popover-open {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
@@ -114,9 +119,16 @@ const findMyIcon = iconData => {
       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
     }
 
+    .icon-img-wrap {
+      box-shadow: none;
+    }
+
     img {
       width: 100%;
       height: 100%;
+      user-select: none;
+      pointer-events: none;
+      -webkit-touch-callout: none;
     }
   }
 

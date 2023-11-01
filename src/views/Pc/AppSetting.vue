@@ -94,13 +94,12 @@
 
     <Row>
       <Col :span="8">拖入或双击重置定位坐标点：</Col>
-      <Col :span="5"
-        ><img
-          class="reset-positon-icon"
-          src="/images/position.png"
-          @dragend="setPosition"
-          @dblclick="setPosition()"
-        />
+      <Col :span="5">
+        <Drag :modelValue="[{}]" @end="setPosition">
+          <template #item>
+            <img class="reset-positon-icon" src="/images/position.png" @dblclick="setPosition()" />
+          </template>
+        </Drag>
       </Col>
     </Row>
 
@@ -170,6 +169,7 @@ import {
   Upload,
   message,
 } from 'ant-design-vue'
+import Drag from 'vuedraggable'
 import { resetPosition } from '@/utils/business/resetPosition'
 import {
   createMarkerIcon,
@@ -204,7 +204,7 @@ const addMarkerIcon = () => {
 
 /** 重置定位坐标 */
 const setPosition = (e?) => {
-  const { x, y } = e || {}
+  const { x, y } = e?.originalEvent || {}
   const point = mapInstance.pixelToPoint({ x: x + 5, y: y - 25 })
   resetPosition(e ? point : null)
 }
