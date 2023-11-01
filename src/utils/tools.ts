@@ -36,3 +36,23 @@ export const getArrRandom = (arr: any[], length = 1) => {
 export const getRandom = (max: number, min = 0) => {
   return min + Math.ceil(Math.random() * (max - min))
 }
+
+/** 获取当前平台环境类型 */
+export const getPlatformType = () => {
+  const { offsetWidth } = document.body
+  /** 内容宽度大于1000，就判定为电脑端 */
+  return offsetWidth > 1000 ? 'pc' : 'mobile'
+}
+
+/** 获取在地图中经纬度坐标 */
+export const getMapPoint = (e, offset?) => {
+  if (!e) return
+  const { mapInstance } = window
+  /** 移动端获取坐标属性和电脑端不一样 */
+  const { pageX, pageY } = e.changedTouches?.[0] || e
+  const point = mapInstance.pixelToPoint({
+    x: pageX + (offset?.x || 0),
+    y: pageY + (offset?.y || 0),
+  })
+  return point
+}

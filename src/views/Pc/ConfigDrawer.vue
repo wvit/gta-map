@@ -66,5 +66,13 @@ const iconsStore = useIconsStore()
       padding: 12px;
     }
   }
+
+  .ant-drawer-header {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  .ant-drawer-content {
+    background: rgba(255, 255, 255, 0.9);
+  }
 }
 </style>

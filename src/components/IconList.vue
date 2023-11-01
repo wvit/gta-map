@@ -43,6 +43,7 @@ import InfiniteScroll from '@/components/InfiniteScroll.vue'
 import { useIconsStore } from '@/stores/icons'
 import { createMarkerIcon } from '@/utils/business/markerIcon'
 import { getIconSrc } from '@/utils/file'
+import { getMapPoint } from '@/utils/tools'
 
 const props = withDefaults(
   defineProps<{
@@ -63,7 +64,6 @@ const props = withDefaults(
   }
 )
 
-const { mapInstance } = window
 const { onSelectIcon } = getCurrentInstance()?.vnode.props || {}
 const iconsStore = useIconsStore()
 
@@ -73,8 +73,7 @@ const allowRenderNum = ref(0)
 /** 拖拽结束，将icon添加至地图 */
 const iconDragEnd = e => {
   const { originalEvent, item } = e
-  const { x, y } = originalEvent
-  const point = mapInstance.pixelToPoint({ x, y: y - 8 })
+  const point = getMapPoint(originalEvent, { y: -8 })
   createMarkerIcon({ point, iconData: item._underlying_vm_, save: true })
 }
 

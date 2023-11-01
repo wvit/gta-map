@@ -6,7 +6,7 @@
       </Collapse.Panel>
 
       <Collapse.Panel key="2" header="怎么删除已添加的图标？">
-        <p>双击地图中你想要删除的图标，或者在“应用配置”中清空所有图标</p>
+        <p>点击地图中你想要删除的图标，或者在“应用配置”中清空所有图标</p>
       </Collapse.Panel>
     </Collapse>
   </div>

@@ -53,7 +53,7 @@ export const createMarkerIcon = (options: {
     })
   }
 
-  markerIcon.addEventListener('dblclick', e => {
+  markerIcon.addEventListener('click', e => {
     e.stopPropagation()
     removeMarkerIcon(markerId)
   })

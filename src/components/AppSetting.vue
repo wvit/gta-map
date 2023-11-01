@@ -97,7 +97,11 @@
       <Col :span="5">
         <Drag :modelValue="[{}]" @end="setPosition">
           <template #item>
-            <img class="reset-positon-icon" src="/images/position.png" @dblclick="setPosition()" />
+            <img
+              class="reset-positon-icon"
+              src="/images/position.png"
+              @mouseup="event.dbclick(setPosition)"
+            />
           </template>
         </Drag>
       </Col>
@@ -179,12 +183,14 @@ import {
 } from '@/utils/business/markerIcon'
 import { playMusic } from '@/utils/business/music'
 import { Dom } from '@/utils/dom'
+import { getMapPoint } from '@/utils/tools'
+import { Event } from '@/utils/event'
 import { useAppSettingStore } from '@/stores/appSetting'
 import { useIconsStore } from '@/stores/icons'
 
-const { mapInstance } = window
 const iconsStore = useIconsStore()
 const { settingConfig } = storeToRefs(useAppSettingStore())
+const event = new Event()
 
 /** 导入配置输入框内容 */
 const importInputValue = ref('')
@@ -204,8 +210,7 @@ const addMarkerIcon = () => {
 
 /** 重置定位坐标 */
 const setPosition = (e?) => {
-  const { x, y } = e?.originalEvent || {}
-  const point = mapInstance.pixelToPoint({ x: x + 5, y: y - 25 })
+  const point = getMapPoint(e?.originalEvent, { x: 5, y: -25 })
   resetPosition(e ? point : null)
 }
 
