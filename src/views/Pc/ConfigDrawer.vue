@@ -30,9 +30,9 @@
 <script setup lang="ts">
 import { Drawer, Tabs } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
-import IconList from './IconList.vue'
-import AppSetting from './AppSetting.vue'
-import Help from './Help.vue'
+import IconList from '@/components/IconList.vue'
+import AppSetting from '@/components/AppSetting.vue'
+import Help from '@/components/Help.vue'
 
 const props = defineProps({
   /** 配置抽屉显隐 */
