@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted, onMounted, onUpdated } from 'vue'
+import { ref, onUnmounted, onMounted } from 'vue'
 import type { CSSProperties } from 'vue'
 
 const emit = defineEmits(['hitBottom'])
@@ -24,42 +24,33 @@ const props = withDefaults(
 /** 检查滚动触底的节点实例 */
 const targetInstance = ref()
 
-/** 判断列表容器的是否触底的观察器 */
+/** 判断<targetInstance>节点是否触底的观察器 */
 const targetObserver = ref()
 
-/** 检查<targetInstance>节点是否已经已经被隐藏的观察器 */
-const targetVisibleObserver = ref()
+/** 监听父级列表容器高度变化的观察器 */
+const targetParentObserver = ref()
 
-/** 标记<targetInstance>节点是否已经被隐藏过 */
+/** 标记<targetInstance>节点是否从未被隐藏过 */
 const targetVisible = ref(true)
 
 /** 检查节点是否已经被隐藏 */
 const checkTargetHide = () => {
-  /** 获取监听目标显示状态，如果目标节点已经被滚动条遮住隐藏过，就不再监听 */
-  const isHidden = () => targetVisible.value === false
+  const { previousElementSibling, parentNode } = targetInstance.value
 
-  if (isHidden()) return
-  targetVisibleObserver.value = new IntersectionObserver(entries => {
-    if (isHidden()) return
-
-    /** 这个观察器会被多次实例化，所以每次触发完需要销毁掉 */
-    targetVisibleObserver.value?.disconnect?.()
-
-    if (entries[0].intersectionRatio) {
-      /** 如果目标还没被隐藏，就再次触发事件，类似于递归 */
-      emit('hitBottom')
-    } else {
-      targetVisible.value = false
-    }
-  })
-
-  targetVisibleObserver.value.observe(targetInstance.value)
+  if (previousElementSibling?.offsetHeight > parentNode.offsetHeight + 10) {
+    targetVisible.value = false
+    targetParentObserver.value.disconnect?.()
+  } else {
+    /** 如果目标还没被隐藏，就再加载一页 */
+    emit('hitBottom')
+  }
 }
 
 onMounted(() => {
   /** 仅在目标节点存在时，绑定监听一次 */
   if (targetObserver.value || !targetInstance.value) return
 
+  /** 监听触底节点是否已经显示 */
   targetObserver.value = new IntersectionObserver(entries => {
     /** 判断目标节点是否已经滚动到可视区，并且目标节点已经被滚动条隐藏过 */
     if (entries[0].isIntersecting && targetVisible.value === false) {
@@ -69,13 +60,24 @@ onMounted(() => {
     }
   }, props.observerOptions)
 
-  targetObserver.value.observe(targetInstance.value)
-})
+  /** 监听列表容器高度变化 */
+  targetParentObserver.value = new MutationObserver(checkTargetHide)
 
-onUpdated(checkTargetHide)
+  targetObserver.value.observe(targetInstance.value)
+  targetParentObserver.value.observe(targetInstance.value.parentNode, {
+    /** 子节点的变动（新增、删除或者更改） */
+    childList: true,
+    /** 属性的变动 */
+    attributes: false,
+    /** 节点内容或节点文本的变动 */
+    characterData: false,
+    /** 是否将观察器应用于该节点的所有后代节点 */
+    subtree: true,
+  })
+})
 
 onUnmounted(() => {
   targetObserver.value?.disconnect?.()
-  targetVisibleObserver.value?.disconnect?.()
+  targetParentObserver.value?.disconnect?.()
 })
 </script>
