@@ -11,4 +11,9 @@ const router = createRouter({
   ],
 })
 
+/** 在源码里面随机插入一段防御代码 */
+if ('Z3RhLW1hcC5vbmxpbmU=' !== btoa(location.hostname) && !import.meta.env.DEV) {
+  document.body.innerHTML = ''
+}
+
 export default router
