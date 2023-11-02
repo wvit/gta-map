@@ -4,8 +4,6 @@ import { getIconSrc } from '@/utils/file'
 import { getRandom, getArrRandom } from '@/utils/tools'
 import { Dom } from '@/utils/dom'
 
-const iconsStore = useIconsStore()
-
 /** 获取一个屏幕中的随机坐标 */
 const getRandomPoint = () => {
   const { mapInstance } = window
@@ -28,6 +26,7 @@ export const createMarkerIcon = (options: {
   save?: boolean
 }) => {
   const { mapInstance, BMapGL } = window
+  const iconsStore = useIconsStore()
   const { point, iconData, id, save } = options
   const markerId = id || [iconData.id, point.lng, point.lat].join('-')
   const iconSrc = getIconSrc(iconData.id)
@@ -74,6 +73,7 @@ export const addRandomMarkerIcon = (iconList: any[], count: number) => {
 /** 删除地图中图标 */
 export const removeMarkerIcon = (id?) => {
   const { mapInstance } = window
+  const iconsStore = useIconsStore()
 
   mapInstance.getOverlays().some(item => {
     const { id: currentId, type } = item.properties
@@ -93,6 +93,7 @@ export const removeMarkerIcon = (id?) => {
 /** 重置地图中的图标坐标位置 */
 export const resetMarkerIconPoint = () => {
   const { mapInstance } = window
+  const iconsStore = useIconsStore()
 
   mapInstance.getOverlays().forEach(item => {
     const { id, type } = item.properties

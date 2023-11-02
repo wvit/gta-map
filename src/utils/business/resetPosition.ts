@@ -2,11 +2,10 @@ import { storeToRefs } from 'pinia'
 import { useAppSettingStore } from '@/stores/appSetting'
 import { Dom } from '@/utils/dom'
 
-const { settingConfig } = storeToRefs(useAppSettingStore())
-
 /** 重置当前坐标位置 */
 export const resetPosition = async (point?) => {
   const { BMapGL, mapInstance } = window
+  const { settingConfig } = storeToRefs(useAppSettingStore())
   const currentCity = new BMapGL.LocalCity()
   const center =
     point ||
