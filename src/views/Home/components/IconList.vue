@@ -109,7 +109,6 @@ const findMyIcon = iconData => {
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
-    user-select: none;
   }
 
   .ant-popover-open {
