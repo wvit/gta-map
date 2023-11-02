@@ -1,7 +1,7 @@
 import { Dom } from '@/utils/dom'
 import { useAppSettingStore } from '@/stores/appSetting'
 
-/** 多绕一圈 */
+/** 多绕一层 */
 const domainName = location.hostname
 
 const appSetting = useAppSettingStore()
