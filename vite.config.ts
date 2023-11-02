@@ -19,7 +19,7 @@ export default defineConfig({
         icons: [
           {
             src: '/images/favicon-pwa.ico',
-            sizes: '1000*1000',
+            sizes: '192x192',
             type: 'image/png',
           },
         ],
