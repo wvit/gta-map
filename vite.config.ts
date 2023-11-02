@@ -22,6 +22,11 @@ export default defineConfig({
             sizes: '192x192',
             type: 'image/png',
           },
+          {
+            src: '/images/favicon-pwa.ico',
+            sizes: '100*100',
+            type: 'image/png',
+          },
         ],
       },
       registerType: 'autoUpdate',
