@@ -108,7 +108,7 @@
     </Row>
 
     <Row>
-      <Col :span="8">
+      <Col :span="9">
         导出地图配置便于分享
         <Popover>
           <template #content>
@@ -139,7 +139,7 @@
               allowClear
               resize="none"
               :rows="5"
-              :style="{ width: '500px' }"
+              :style="{ width: '500px', maxWidth: '85vw' }"
               v-model:value="importInputValue"
             />
           </template>
@@ -276,7 +276,6 @@ const importSettingConfig = async (type: 'clipboard' | 'file', e?) => {
     margin-top: 24px;
 
     .ant-select,
-    .ant-btn,
     .ant-switch,
     .reset-positon-icon {
       margin: 0 8px;
@@ -285,6 +284,11 @@ const importSettingConfig = async (type: 'clipboard' | 'file', e?) => {
     .reset-positon-icon {
       width: 32px;
       cursor: grab;
+    }
+
+    .ant-col,
+    .ant-btn {
+      margin-right: 8px;
     }
   }
 

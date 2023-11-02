@@ -114,14 +114,14 @@ onUnmounted(() => {
   position: relative;
 
   .web-info {
-    position: fixed;
+    position: absolute;
     bottom: 2px;
     left: 50%;
     transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.5);
     font-size: 12px;
     text-align: center;
-    z-index: 999;
+    z-index: 99;
 
     a {
       color: rgba(255, 255, 255, 0.5);

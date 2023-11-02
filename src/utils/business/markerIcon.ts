@@ -28,15 +28,14 @@ export const createMarkerIcon = (options: {
   const { mapInstance, BMapGL } = window
   const iconsStore = useIconsStore()
   const { point, iconData, id, save } = options
+  if (!iconData) return
   const markerId = id || [iconData.id, point.lng, point.lat].join('-')
   const iconSrc = getIconSrc(iconData.id)
-
   const markerIcon = Dom.create('img', {
     src: iconSrc,
     draggable: false,
     title: '双击移除此图标',
   }).setStyle({ width: '32px', height: '32px', cursor: 'pointer' })
-
   const customOverlay = new BMapGL.CustomOverlay(() => markerIcon, {
     point,
     map: mapInstance,

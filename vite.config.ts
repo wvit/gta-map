@@ -12,9 +12,10 @@ export default defineConfig({
     },
   },
   build: {
-    minify: true
+    minify: true,
   },
   server: {
+    hmr: true,
     host: '0.0.0.0',
     port: 8080,
   },

@@ -6,7 +6,13 @@
     }"
   >
     <InfiniteScroll @hitBottom="allowRenderNum += 100">
-      <Drag item-key="id" :sort="false" :modelValue="props.iconList" @end="iconDragEnd">
+      <Drag
+        item-key="index"
+        :sort="false"
+        :delay="props.dragDelay"
+        :modelValue="props.iconList"
+        @end="iconDragEnd"
+      >
         <template #item="{ element: item, index }">
           <div
             v-if="index < allowRenderNum"
@@ -55,12 +61,15 @@ const props = withDefaults(
     scrollMargin?: number
     /** 当前选中的图标id */
     activeId?: string
+    /** 长按一定时间后才允许拖拽 */
+    dragDelay?: number
   }>(),
   {
     iconList: () => [],
     size: 40,
     scrollMargin: 12,
     activeId: '',
+    dragDelay: 0,
   }
 )
 
@@ -125,9 +134,6 @@ const findMyIcon = iconData => {
     img {
       width: 100%;
       height: 100%;
-      user-select: none;
-      pointer-events: none;
-      -webkit-touch-callout: none;
     }
   }
 
