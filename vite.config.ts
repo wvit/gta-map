@@ -15,16 +15,11 @@ export default defineConfig({
         name: 'GTA MAP',
         short_name: 'GTA MAP',
         description: 'GTA style map',
-        theme_color: '#ffffff',
+        theme_color: '#000000',
         icons: [
           {
-            src: '/images/favicon.ico',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/images/favicon.ico',
-            sizes: '100*100',
+            src: '/images/favicon-pwa.ico',
+            sizes: '1000*1000',
             type: 'image/png',
           },
         ],
@@ -33,23 +28,6 @@ export default defineConfig({
       workbox: {
         /** 缓存相关静态资源 */
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-        runtimeCaching: [
-          {
-            handler: 'CacheFirst',
-            urlPattern: /^http:\/\/api.map.baidu.com*/,
-            method: 'GET',
-            options: {
-              cacheName: 'baidu-map', //创建缓存名称
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365,
-              },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
       },
       devOptions: {
         enabled: true,

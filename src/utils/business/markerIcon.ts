@@ -9,8 +9,8 @@ const getRandomPoint = () => {
   const { mapInstance } = window
   const { offsetWidth, offsetHeight } = document.body
   return mapInstance.pixelToPoint({
-    x: getRandom(offsetWidth * 0.8, offsetWidth * 0.2),
-    y: getRandom(offsetHeight * 0.8, offsetHeight * 0.2),
+    x: getRandom(offsetWidth * 0.9, offsetWidth * 0.1),
+    y: getRandom(offsetHeight * 0.9, offsetHeight * 0.1),
   })
 }
 
