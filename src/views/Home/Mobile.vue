@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { Avatar } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import IconList from './components/IconList.vue'
@@ -88,6 +88,10 @@ const currentIconList = computed(() => {
     '1': iconsStore.myIcons,
     '2': iconsStore.allIcons,
   }[configActive.value]
+})
+
+onMounted(() => {
+  window._hmt.push(['_trackPageview', '/mobile']);
 })
 </script>
 

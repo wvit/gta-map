@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { Avatar, Drawer, Tabs } from 'ant-design-vue'
 import { useIconsStore } from '@/stores/icons'
 import IconList from './components/IconList.vue'
@@ -47,6 +47,10 @@ const iconsStore = useIconsStore()
 
 /** 配置栏显隐 */
 const configVisible = ref(false)
+
+onMounted(() => {
+  window._hmt.push(['_trackPageview', '/pc'])
+})
 </script>
 
 <style scoped lang="less">
