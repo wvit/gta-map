@@ -78,6 +78,7 @@ onUnmounted(() => {
 
   .loading-text {
     margin-top: 70px;
+    white-space: nowrap;
   }
 }
 </style>
