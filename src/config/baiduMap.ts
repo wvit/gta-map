@@ -65,7 +65,7 @@ export const baiduMapStyle = [
     featureType: 'district',
     elementType: 'labels',
     stylers: {
-      visibility: 'off',
+      visibility: 'on',
     },
   },
   {
@@ -281,7 +281,8 @@ export const baiduMapStyle = [
     featureType: 'subway',
     elementType: 'geometry',
     stylers: {
-      visibility: 'off',
+      visibility: 'on',
+      weight: 5,
     },
   },
   {
@@ -369,7 +370,7 @@ export const baiduMapStyle = [
     featureType: 'shopping',
     elementType: 'geometry',
     stylers: {
-      visibility: 'off',
+      visibility: 'on',
     },
   },
   {
@@ -417,118 +418,6 @@ export const baiduMapStyle = [
   },
   {
     featureType: 'road',
-    stylers: {
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    stylers: {
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    stylers: {
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    stylers: {
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'road',
     elementType: 'labels.text',
     stylers: {
       fontsize: '24',
@@ -540,7 +429,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#b8dbd9ff',
-      weight: '1',
+      weight: 1,
     },
   },
   {
@@ -556,6 +445,7 @@ export const baiduMapStyle = [
     elementType: 'geometry.stroke',
     stylers: {
       color: '#1c4f7eff',
+      opacity: '82',
     },
   },
   {
@@ -570,7 +460,7 @@ export const baiduMapStyle = [
     featureType: 'highway',
     elementType: 'geometry',
     stylers: {
-      weight: '3',
+      weight: 5,
     },
   },
   {
@@ -586,6 +476,7 @@ export const baiduMapStyle = [
     elementType: 'geometry.stroke',
     stylers: {
       color: '#1c4f7eff',
+      opacity: '80',
     },
   },
   {
@@ -602,14 +493,14 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#b8dbd9ff',
-      weight: '1',
+      weight: 1,
     },
   },
   {
     featureType: 'nationalway',
     elementType: 'geometry',
     stylers: {
-      weight: '3',
+      weight: 2,
     },
   },
   {
@@ -666,6 +557,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#3a4c54ff',
+      opacity: '82',
     },
   },
   {
@@ -674,6 +566,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#bfbfbfff',
+      opacity: '8a',
     },
   },
   {
@@ -682,6 +575,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#bfbfbfff',
+      opacity: '80',
     },
   },
   {
@@ -771,7 +665,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#b8dbd9ff',
-      weight: '1',
+      weight: 1,
     },
   },
   {
@@ -780,7 +674,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#b8dbd9ff',
-      weight: '1',
+      weight: 1,
     },
   },
   {
@@ -789,7 +683,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#b8dbd9ff',
-      weight: '1',
+      weight: 2,
     },
   },
   {
@@ -798,7 +692,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#b8dbd9ff',
-      weight: '1',
+      weight: 0.5,
     },
   },
   {
@@ -815,13 +709,15 @@ export const baiduMapStyle = [
     elementType: 'geometry',
     stylers: {
       weight: '1',
+      visibility: 'off',
     },
   },
   {
     featureType: 'tertiaryway',
     elementType: 'geometry',
     stylers: {
-      weight: '1',
+      weight: 1,
+      visibility: 'on',
     },
   },
   {
@@ -829,447 +725,28 @@ export const baiduMapStyle = [
     elementType: 'geometry',
     stylers: {
       weight: '1',
+      visibility: 'off',
     },
   },
   {
     featureType: 'provincialway',
     elementType: 'geometry',
     stylers: {
-      weight: '3',
+      weight: 2,
     },
   },
   {
     featureType: 'cityhighway',
     elementType: 'geometry',
     stylers: {
-      weight: '3',
+      weight: 3,
     },
   },
   {
     featureType: 'arterial',
     elementType: 'geometry',
     stylers: {
-      weight: '3',
-    },
-  },
-  {
-    featureType: 'highway',
-    stylers: {
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    stylers: {
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    stylers: {
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    stylers: {
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'highway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    stylers: {
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    stylers: {
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    stylers: {
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    stylers: {
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'nationalway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'provincialway',
-    stylers: {
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '8-10',
-    },
-  },
-  {
-    featureType: 'provincialway',
-    stylers: {
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '8-10',
-    },
-  },
-  {
-    featureType: 'provincialway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '8-10',
-    },
-  },
-  {
-    featureType: 'provincialway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '8-10',
-    },
-  },
-  {
-    featureType: 'provincialway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '8-10',
-    },
-  },
-  {
-    featureType: 'provincialway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '8-10',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    stylers: {
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    stylers: {
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    stylers: {
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    stylers: {
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '6',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '7',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '8',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'cityhighway',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '6-9',
-    },
-  },
-  {
-    featureType: 'arterial',
-    stylers: {
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '9-9',
-    },
-  },
-  {
-    featureType: 'arterial',
-    elementType: 'geometry',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '9-9',
-    },
-  },
-  {
-    featureType: 'arterial',
-    elementType: 'labels',
-    stylers: {
-      visibility: 'off',
-      level: '9',
-      curZoomRegionId: '0',
-      curZoomRegion: '9-9',
+      weight: 3,
     },
   },
   {
@@ -1312,6 +789,2753 @@ export const baiduMapStyle = [
     elementType: 'geometry',
     stylers: {
       color: '#787878ff',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'highway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'highway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'nationalway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'provincialway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '8,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'arterial',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '9,21',
+      level: '21',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'road',
+    stylers: {
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'on',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '6',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '7',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '8',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '9',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '10',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '11',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '12',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '13',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '14',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '15',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '16',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '17',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '18',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '19',
+    },
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+      curZoomRegionId: '0',
+      curZoomRegion: '6,20',
+      level: '20',
+    },
+  },
+  {
+    featureType: 'highrailway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'roadarrow',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'footbridge',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'crosswalk',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'underpass',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'laneline',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'parkingspace',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'subway',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'subway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'vacationway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'universityway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'scenicspotsway',
+    elementType: 'geometry',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'local',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'local',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'fourlevelway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'fourlevelway',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'tertiaryway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'tertiaryway',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'arterial',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'subway',
+    elementType: 'labels.text',
+    stylers: {
+      fontsize: 50,
+    },
+  },
+  {
+    featureType: 'subway',
+    elementType: 'labels.text.stroke',
+    stylers: {
+      weight: 2,
+    },
+  },
+  {
+    featureType: 'subway',
+    elementType: 'labels.text.fill',
+    stylers: {
+      weight: 10,
+    },
+  },
+  {
+    featureType: 'subwaylabel',
+    elementType: 'labels.text',
+    stylers: {
+      fontsize: 14,
+    },
+  },
+  {
+    featureType: 'cityhighway',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'shoppinglabel',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
+    },
+  },
+  {
+    featureType: 'island',
+    elementType: 'labels',
+    stylers: {
+      visibility: 'on',
+    },
+  },
+  {
+    featureType: 'district',
+    elementType: 'labels.text.stroke',
+    stylers: {
+      weight: 1,
+      opacity: '9c',
+    },
+  },
+  {
+    featureType: 'district',
+    elementType: 'labels.text',
+    stylers: {
+      fontsize: 24,
+    },
+  },
+  {
+    featureType: 'district',
+    elementType: 'labels.text.fill',
+    stylers: {
+      weight: 30,
+      color: '#f4f4f9ff',
+      opacity: 'bf',
+    },
+  },
+  {
+    featureType: 'subway',
+    elementType: 'geometry.stroke',
+    stylers: {
+      opacity: '80',
+    },
+  },
+  {
+    featureType: 'town',
+    elementType: 'labels.icon',
+    stylers: {
+      visibility: 'off',
     },
   },
 ]

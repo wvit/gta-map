@@ -15,13 +15,22 @@
         苏公网安备 32059002004416号
       </a>
     </div>
+    <img
+      src="/images/fullScreen.png"
+      class="full-screen-btn"
+      :style="{ opacity: fullScreenStatus ? 0.2 : 1 }"
+      @click="fullScreen"
+    />
 
-    <Pc v-if="getPlatformType() === 'pc'" />
-    <Mobile v-else />
+    <template v-if="!fullScreenStatus">
+      <Pc v-if="getPlatformType() === 'pc'" />
+      <Mobile v-else />
+    </template>
   </div>
 </template>
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { message } from 'ant-design-vue'
 import { baiduMapKey, baiduMapStyle } from '@/config/baiduMap'
 import { useIconsStore } from '@/stores/icons'
 import { useAppSettingStore } from '@/stores/appSetting'
@@ -36,7 +45,11 @@ import Mobile from './Mobile.vue'
 const iconsStore = useIconsStore()
 const appSetting = useAppSettingStore()
 
+/** 百度地图是否初始化完成标识 */
 const baiduMapInitStatus = ref(false)
+
+/** 是否为全屏状态 */
+const fullScreenStatus = ref(false)
 
 /** 初始化地图 */
 const initMap = () => {
@@ -92,9 +105,25 @@ const initStoreMarkerIcons = async () => {
   }
 }
 
+/** 进入/退出全屏状态 */
+const fullScreen = () => {
+  fullScreenStatus.value = !fullScreenStatus.value
+  const opacity = fullScreenStatus.value ? 0 : 1
+  const targets = [
+    Dom.query('.BMap_stdMpZoom'),
+    Dom.query('.BMap_scaleCtrl'),
+    Dom.query('.BMap_scaleTxt'),
+    Dom.query('.web-info'),
+  ]
+
+  targets.forEach(item => (item.style.opacity = opacity))
+  message.success(fullScreenStatus.value ? '进入全屏' : '退出全屏')
+}
+
 onMounted(async () => {
   await initMap()
   baiduMapInitStatus.value = true
+  Dom.query('.anchorBL>img').destroy()
   document.addEventListener('mousedown', playMusic)
 })
 
@@ -132,6 +161,15 @@ onUnmounted(() => {
         color: #59acf9;
       }
     }
+  }
+
+  .full-screen-btn {
+    position: absolute;
+    z-index: 99;
+    right: 10px;
+    bottom: 10px;
+    width: 30px;
+    cursor: pointer;
   }
 }
 </style>
