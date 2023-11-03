@@ -35,7 +35,7 @@ export const createMarkerIcon = (options: {
     src: iconSrc,
     draggable: false,
     title: '双击移除此图标',
-  }).setStyle({ width: '30px', height: '30px', cursor: 'pointer' })
+  }).setStyle({ width: '28px', height: '28px', cursor: 'pointer' })
   const customOverlay = new BMapGL.CustomOverlay(() => markerIcon, {
     point,
     map: mapInstance,
