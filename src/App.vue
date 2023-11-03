@@ -12,7 +12,7 @@
       <span :style="{ transform: `rotate(${36 * 8}deg)`, opacity: 0.2 }"></span>
       <span :style="{ transform: `rotate(${36 * 9}deg)`, opacity: 0.1 }"></span>
     </div>
-    <p class="loading-text">请稍等，正在为您准备资源...</p>
+    <p class="loading-text">请稍等几秒，正在为您准备资源...</p>
   </div>
 
   <RouterView />
