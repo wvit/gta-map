@@ -101,7 +101,7 @@ const initStoreMarkerIcons = async () => {
       createMarkerIcon(item as any)
     })
   } else {
-    addRandomMarkerIcon(allIcons, 20)
+    addRandomMarkerIcon(allIcons, 30)
   }
 }
 
