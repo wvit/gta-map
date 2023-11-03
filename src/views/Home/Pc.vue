@@ -81,6 +81,7 @@ const configVisible = ref(false)
 
     .ant-tabs-tabpane {
       padding: 12px;
+      overflow-y: auto;
     }
   }
 
