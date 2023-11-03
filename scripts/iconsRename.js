@@ -52,6 +52,23 @@ const iconsRename = () => {
       2
     )
   )
+
+  fs.writeFileSync(
+    join(__dirname, '../src/config/iconsBase64.json'),
+    JSON.stringify(
+      {
+        length: icons.length,
+        list: icons.map(item => {
+          const { id } = parse(item)
+          const file = fs.readFileSync(getIconPath(`${item}.png`))
+          const base64 = Buffer.from(file).toString('base64')
+          return { id, base64: `data:image/png;base64,${base64}`, type: 'base64' }
+        }),
+      },
+      null,
+      2
+    )
+  )
 }
 
 iconsRename()
