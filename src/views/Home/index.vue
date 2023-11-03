@@ -68,11 +68,11 @@ const initMap = () => {
         const mapInstance = new BMapGL.Map('map-container')
         const scaleCtrl = new BMapGL.ScaleControl({
           anchor: BMAP_ANCHOR_BOTTOM_LEFT,
-          offset: { width: 10, height: 40 },
+          offset: { width: 10, height: 10 },
         })
         const zoomCtrl = new BMapGL.ZoomControl({
           anchor: BMAP_ANCHOR_BOTTOM_LEFT,
-          offset: { width: 10, height: 80 },
+          offset: { width: 10, height: 50 },
         })
 
         window.mapInstance = mapInstance
@@ -124,6 +124,7 @@ onMounted(async () => {
   await initMap()
   baiduMapInitStatus.value = true
   Dom.query('.anchorBL>img').destroy()
+  Dom.query('.page-loading').destroy()
   document.addEventListener('mousedown', playMusic)
 })
 
