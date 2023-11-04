@@ -445,7 +445,7 @@ export const baiduMapStyle = [
     elementType: 'geometry.stroke',
     stylers: {
       color: '#1c4f7eff',
-      opacity: '82',
+      opacity: 'e6',
     },
   },
   {
@@ -476,7 +476,7 @@ export const baiduMapStyle = [
     elementType: 'geometry.stroke',
     stylers: {
       color: '#1c4f7eff',
-      opacity: '80',
+      opacity: 'e0',
     },
   },
   {
@@ -557,7 +557,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#3a4c54ff',
-      opacity: '82',
+      opacity: 'e6',
     },
   },
   {
@@ -566,7 +566,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#bfbfbfff',
-      opacity: '8a',
+      opacity: 'e3',
     },
   },
   {
@@ -575,7 +575,7 @@ export const baiduMapStyle = [
     stylers: {
       visibility: 'on',
       color: '#bfbfbfff',
-      opacity: '80',
+      opacity: 'e6',
     },
   },
   {
@@ -3528,7 +3528,7 @@ export const baiduMapStyle = [
     featureType: 'subway',
     elementType: 'geometry.stroke',
     stylers: {
-      opacity: '80',
+      opacity: 'e8',
     },
   },
   {
