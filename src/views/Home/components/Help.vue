@@ -25,8 +25,13 @@
       </Collapse.Panel>
       <Collapse.Panel key="5" header="有问题或者建议需要反馈？">
         如果你想提什么功能建议，或者UI风格建议都可以联系我
-        <p>微信：vvvwv-o_o-</p>
         <p>邮箱：1083926534@qq.com</p>
+        <p>
+          github：
+          <a href="https://github.com/wvit/gta-map.git" target="_blank"
+            >https://github.com/wvit/gta-map.git</a
+          >
+        </p>
       </Collapse.Panel>
     </Collapse>
   </div>
