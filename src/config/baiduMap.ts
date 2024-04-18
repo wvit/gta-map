@@ -1,7 +1,3 @@
-/** 多绕一层 */
-const mapBody = document.body
-const domainName = location.hostname
-
 /** 百度地图key */
 export const baiduMapKey = 'XTUtb8INdHHtThuIi56GhuAkjwTpIuaX'
 
@@ -3136,8 +3132,3 @@ export const baiduMapStyle = [{
       "visibility": "off"
   }
 }]
-
-/** 在源码里面随机插入一段防御代码 */
-if ('Z3RhLW1hcC5vbmxpbmU=' !== btoa(domainName) && !import.meta.env.DEV) {
-  mapBody.innerHTML = ''
-}

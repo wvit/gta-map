@@ -6,8 +6,6 @@
 
 您也可以替换或者自取里面的图标。
 
-网站地址：[https://gta-map.online](https://gta-map.online)
-
 ### 效果预览
 
 ###### 图标列表.jpg
